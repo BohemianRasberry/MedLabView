@@ -1,7 +1,9 @@
 from django.urls import path
-from .views import *
+from . views import *
 
 urlpatterns = [
-    path("", login, name="front"), #Connects to the frontend
-    path("home", ClinicView.as_view()),
+    path("login/", login, name="front"), #Connects to the frontend
+    path("clinic/", ClinicView.as_view()),
+    path("home/", home, name="home")
+    
 ]
