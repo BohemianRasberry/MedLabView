@@ -1,0 +1,33 @@
+<!-- core/templates/core/base.html -->
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{% block title %}My App{% endblock %}</title>
+    <!-- Your CSS or external stylesheets -->
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
+  </head>
+  <body>
+    <header>
+      <!-- Your header content -->
+      <nav>
+        <ul>
+          <li><a href="{% url 'home' %}">Home</a></li>
+          <li><a href="{% url 'login' %}">Login</a></li>
+          <!-- Other navigation links -->
+        </ul>
+      </nav>
+    </header>
+
+    <main>{% block content %}{% endblock %}</main>
+
+    <footer>
+      <!-- Your footer content -->
+    </footer>
+
+    <!-- Your JavaScript files -->
+    <script src="{% static 'js/main.js' %}"></script>
+  </body>
+</html>
