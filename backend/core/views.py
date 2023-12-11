@@ -7,19 +7,16 @@ from django.contrib.auth import authenticate, login
 
 # Create your views here.
 
+def base(request):
+    csrf_token = "your_actual_csrf_token_here"  # Replace with the actual CSRF token
+
+    context = {
+        'csrf_token': csrf_token,
+    }
+    return render(request, 'core/login.html', context)
+
 def login(request):
-    if request.method == 'POST':
-        email = request.POST.get('email')
-        password = request.POST.get('password')
-        user = authenticate(request, email=email, password=password)
-        
-        if user is not None: 
-            login(request, user)
-            return HttpResponse("This test works")
-        else:
-            messages.error(request, "There is no user with that password")
-    
-    context = { }
+    context = {}
     return render(request, 'index.html', context)
 
 def home(request):
