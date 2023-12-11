@@ -18,7 +18,7 @@ const Header = () => {
 
     return (
         <div className='header'>
-            <Link to="/home" target="_self" rel="noreferrer">
+            <Link to="/" target="_self" rel="noreferrer">
                 <div className="title"><span>MSJK Diagnostic Test Portal</span></div>
             </Link>
             
@@ -30,7 +30,7 @@ const Header = () => {
                 </button>
             )}
 
-            <Link to="/home" target="_self" rel="noreferrer">
+            <Link to="/" target="_self" rel="noreferrer">
                 <div className="home">
                     <span><img src={home_icon} alt="Home" /></span>
                 </div>

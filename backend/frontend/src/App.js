@@ -1,6 +1,7 @@
 import './App.css';
 import { Routes, Route, Navigate } from "react-router-dom";
-import PageHome from './PageHome';
+import PageHomeDN from './PageHomeDN';
+import PageHomeLC from './PageHomeLC';
 import PageLogin from './PageLogin';
 import Userfront from "@userfront/react";
 
@@ -10,7 +11,7 @@ function App() {
   function RedirectToHomeIfLoggedIn() {
     if (Userfront.accessToken()) {
       // If user is logged in, redirect them to /home
-      return <Navigate to="/home" replace />;
+      return <Navigate to="/" replace />;
     } else {
       // Otherwise, show the login page
       return <PageLogin />;
@@ -28,11 +29,16 @@ function App() {
 
   return (
     <Routes>
-      <Route path="/" element={<PageHome />} />
+      <Route path="/" element={<PageHomeDN />} />
       <Route path="/login" element={<RedirectToHomeIfLoggedIn />} />
-      <Route path="/home" element={
+      <Route path="/homedn" element={
         <RequireAuth>
-          <PageHome />
+          <PageHomeDN />
+        </RequireAuth>
+      } />
+      <Route path="/homeLC" element={
+        <RequireAuth>
+          <PageHomeLC />
         </RequireAuth>
       } />
     </Routes>

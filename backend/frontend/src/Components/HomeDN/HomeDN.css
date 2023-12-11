@@ -1,22 +1,24 @@
-.ltp-container{
+.dn-container{
     display: flex;
     flex-direction: column;
     margin: auto;
-    margin-top: 9.2%;
+    margin-top: 3%;
     justify-content: center;
     align-items: center;   
     width: 90%;
     background: #fff;
     padding-bottom: 30px;
     border-radius: 50px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.ltp-logo{
+.dn-logo{
     display: flex;
     flex-direction: column;
     align-items: center;
     width: 100%;
     margin-top: 70px;
+    margin-bottom: 40px;
 
     gap: 25px;
 
@@ -25,10 +27,10 @@
     font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 
        'Lucida Sans', Arial, sans-serif;
     font-weight: 600;
-    margin-bottom: 40px;
+    
 }
 
-.ltp-search{
+.dn-search{
     display: flex;
     align-items: center;
     margin: auto;
@@ -36,9 +38,10 @@
     height: 80px;
     background: #edf5f3;
     border-radius: 50px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.ltp-search input{
+.dn-search input{
     height: 50px;
     width: 90%;
     background: transparent;
@@ -53,16 +56,16 @@
        'Lucida Sans', Arial, sans-serif; 
 }
 
-.ltp-search-button {
+.dn-search-button {
     padding-right: 27px;
     opacity: 70%;
 }
 
-.ltp-search-button span{
+.dn-search-button span{
     cursor: pointer;
 }
 
-.ltp-patients-header {
+.dn-patients-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -73,9 +76,10 @@
     max-width: 85%; 
     margin: auto;
     margin-top: 50px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
   
-.ltp-p-h {
+.dn-p-h {
     width: 1000px;
     text-align: center;
     padding: 10px; 
@@ -86,7 +90,7 @@
     color: #18694e;
 }
 
-.ltp-p-h-separator {
+.dn-p-h-separator {
     opacity: 25%;
     font-size: 30px;
     padding-bottom: 0.5%;

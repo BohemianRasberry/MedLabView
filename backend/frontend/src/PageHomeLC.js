@@ -1,14 +1,14 @@
 import React from "react";
 import Header from "./Components/Header/Header";
-import Home from './Components/Home/Home';
+import HomeLC from './Components/HomeLC/HomeLC';
 
-function PageHome() {
+function PageHomeLC() {
     return(
         <div>
             <Header/>
-            <Home/>
+            <HomeLC/>
         </div>
     )
 }
 
-export default PageHome
+export default PageHomeLC
