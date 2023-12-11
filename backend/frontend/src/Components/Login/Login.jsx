@@ -1,14 +1,31 @@
 import React, { useState } from 'react';
 import './Login.css';
+import Userfront from "@userfront/core";
 
 import logo_icon from '../Assets/Logo.png';
 import eyeOpen from '../Assets/EyeOpen.png';
 import eyeClose from '../Assets/EyeClose.png';
 
-const Login = () => {
-    const [password, setPassword] = useState("");
-    const [visible, setVisible] = useState(true);
+Userfront.init("wbmpp6gn");
 
+const Login = () => {
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [visible, setVisible] = useState(false);
+
+    const handleLogin = async () => {
+        try {
+            await Userfront.login({
+                method: "password",
+                email: "member@example.com", // Replace with actual user input
+                password: "testmodepassword", // Replace with actual user input
+            });
+            // Redirect or perform actions after successful login
+        } catch (error) {
+            console.error("Login failed:", error);
+            // Handle login failure
+        }
+    };
     return (
         <div className='login-container'>
             <div className="logo">
@@ -16,7 +33,12 @@ const Login = () => {
             </div>
             <div className="em-pass">               
                 <div className="input">
-                    <input type="email" placeholder="Enter Email"/>
+                    <input 
+                        type="email" 
+                        placeholder="Enter Email" 
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                    />
                 </div>
 
                 <div className="input">
@@ -37,7 +59,7 @@ const Login = () => {
                 </div>
             </div>
 
-            <div className="login-button">
+            <div className="login-button" onClick={handleLogin}>
                 <div className="login-button-text">Login</div>
             </div>
         </div>
