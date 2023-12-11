@@ -6,7 +6,7 @@ import logo_icon from '../Assets/Logo.png';
 import eyeOpen from '../Assets/EyeOpen.png';
 import eyeClose from '../Assets/EyeClose.png';
 
-Userfront.init("wbmpp6gn");
+Userfront.init("8nwyy85n");
 
 const Login = () => {
     const [email, setEmail] = useState("");

@@ -4,7 +4,7 @@ import PageHome from './PageHome';
 import PageLogin from './PageLogin';
 import Userfront from "@userfront/react";
 
-Userfront.init("demo1234");
+Userfront.init("8nwyy85n");
 
 function App() {
   function RequireAuth({ children }) {
@@ -18,8 +18,9 @@ function App() {
 
   return (
     <Routes>
+      <Route path="/" element={<PageHome />} />
       <Route path="/login" element={<PageLogin />} />
-      <Route path="/" element={
+      <Route path="/home" element={
         <RequireAuth>
           <PageHome />
         </RequireAuth>

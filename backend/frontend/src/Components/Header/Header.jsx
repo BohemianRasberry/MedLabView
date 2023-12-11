@@ -22,17 +22,19 @@ const Header = () => {
                 <div className="title"><span>MSJK Diagnostic Test Portal</span></div>
             </Link>
             
+            {showLogoutButton && (
+                <button onClick={handleLogout} className="logout-button">
+                    <span><div className='logout-button-text'>
+                        Logout
+                    </div></span>
+                </button>
+            )}
+
             <Link to="/home" target="_self" rel="noreferrer">
                 <div className="home">
                     <span><img src={home_icon} alt="Home" /></span>
                 </div>
             </Link>
-
-            {showLogoutButton && (
-                <button onClick={handleLogout} className="logout-button">
-                    Logout
-                </button>
-            )}
         </div>
     );
 }

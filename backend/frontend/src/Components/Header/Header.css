@@ -1,6 +1,5 @@
 .header{
     display: flex;
-    flex-direction: row;
     justify-content: space-between;
     align-items: center;
     margin: auto;
@@ -34,12 +33,37 @@
 }
 
 .home{
-    padding-top: 3px;
-    padding-right: 40px;
+    padding-top: 5px;
+    padding-right: 60px;
     text-align: center;
 }
 
 .home span{
+    cursor: pointer;
+}
+
+.logout-button{
+    display: flex;
+    background-color: #18694e; /* Green */
+    border: none;
+    border-radius: 50px;
+    color: white;
+    padding: 15px 30px;
+    text-decoration: none;
+    float: right;
+    margin-left: auto;
+    margin-right: 30px;
+    cursor: pointer;
+}
+
+.logout-button-text{
+    font-size: 20px;
+    font-weight: 600;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 
+    'Lucida Sans', Arial, sans-serif;
+}
+
+.logout-button span{
     cursor: pointer;
 }
 
