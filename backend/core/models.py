@@ -27,15 +27,15 @@ class Medtech(models.Model):
     
 class Specimen(models.Model):
     specimen_id = models.AutoField(primary_key=True)
-    medtech_id = models.ForeignKey(Medtech, on_delete=models.CASCADE)
-    patient_id = models.ForeignKey(Patient, on_delete=models.CASCADE) 
+    medtech_id = models.ForeignKey(Medtech, on_delete=models.CASCADE, null=True)
+    patient_id = models.ForeignKey(Patient, on_delete=models.CASCADE, null=True) 
     
 class Transaction(models.Model):
     transaction_id = models.AutoField(primary_key=True)
     test_code = models.IntegerField()
-    patient_id = models.ForeignKey(Patient, on_delete=models.CASCADE)
-    pathologist_id = models.ForeignKey(Pathologist, on_delete=models.CASCADE)
-    specimen_id = models.ForeignKey(Specimen, on_delete=models.CASCADE)
+    patient_id = models.ForeignKey(Patient, on_delete=models.CASCADE, null=True)
+    pathologist_id = models.ForeignKey(Pathologist, on_delete=models.CASCADE, null=True)
+    specimen_id = models.ForeignKey(Specimen, on_delete=models.CASCADE, null=True)
     datetime = models.DateTimeField()
     
 class Complete_Blood_Count(models.Model):
