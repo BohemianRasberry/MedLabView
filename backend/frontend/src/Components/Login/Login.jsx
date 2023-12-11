@@ -14,16 +14,26 @@ const Login = () => {
     const [visible, setVisible] = useState(false);
 
     const handleLogin = async () => {
+        if (!email.trim() || !password.trim()) {
+            alert("Email and password cannot be blank.");
+            return;
+        }
+    
         try {
-            await Userfront.login({
+            const response = await Userfront.login({
                 method: "password",
-                email: "member@example.com", // Replace with actual user input
-                password: "testmodepassword", // Replace with actual user input
+                email: email,
+                password: password,
             });
-            // Redirect or perform actions after successful login
+            // Check response here for any error indications
+            if (response.error) {
+                alert("Incorrect email or password."); // Update with a more user-friendly message
+            } else {
+                // Redirect or perform actions after successful login
+            }
         } catch (error) {
-            console.error("Login failed:", error);
-            // Handle login failure
+            console.error("Login error:", error);
+            // Handle other types of login failures
         }
     };
     return (
