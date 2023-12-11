@@ -82,6 +82,7 @@
 }
 
 .eyecon {
+    margin-top: 5px;
     margin-left: -20px;
     margin-right: -20px;
     padding-left: 14px;
@@ -92,7 +93,7 @@
 .eyecon span{
     cursor: pointer;
 }
-
+/*
 .forgot-password{
     align-items: left;
     padding-left: 0px;
@@ -107,11 +108,11 @@
     color: #266b54;
     cursor: pointer;
 }
-
+*/
 .login-button{
     display: flex;
     gap: 30px;
-    margin: 30px auto;
+    margin: 50px auto 25px;
     font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 
        'Lucida Sans', Arial, sans-serif;
 }

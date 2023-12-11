@@ -37,11 +37,6 @@ const Login = () => {
                 </div>
             </div>
 
-            <div className="forgot-password">
-                Lost Password? 
-                <span> Click Here!</span>
-            </div>
-
             <div className="login-button">
                 <div className="login-button-text">Login</div>
             </div>
