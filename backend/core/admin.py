@@ -6,4 +6,5 @@ from . models import *
 admin.site.register(Pathologist)
 admin.site.register(Medtech)
 admin.site.register(Transaction)
-#admin.site.register(Specimen)
+admin.site.register(Specimen)
+admin.site.register(Patient)
