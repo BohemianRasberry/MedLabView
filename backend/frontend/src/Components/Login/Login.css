@@ -2,10 +2,10 @@
     display: flex;
     flex-direction: column;
     margin: auto;
-    margin-top: 9.2%;
+    margin-top: 8%;
     justify-content: center;
     align-items: center;   
-    width: 600px;
+    width: clamp(30rem, 10vw, 520px);
     background: #fff;
     padding-bottom: 30px;
     border-radius: 5%;
@@ -21,25 +21,16 @@
     margin-top: 45px;
 }
 
+.logo img{
+    width: 270px;
+}
 .em-pass{
-    margin-top: 35px;
+    margin-top: 30px;
     display: flex;
     flex-direction: column;
     gap: 20px;
     
 }
-
-.input{
-    display: flex;
-    align-items: center;
-    margin: auto;
-    width: 450px;
-    height: 80px;
-    background: #edf0f6;
-    border-radius: 5px;
-    
-}
-
 .input input{
     height: 50px;
     width: 500px;
@@ -47,7 +38,7 @@
     border: none;
     outline: none;
     color: #000000;
-    font-size: 25px;
+    font-size: 20px;
     padding-left: 20px;
     padding-right: 20px;
     opacity: 50%;
@@ -59,25 +50,10 @@
     display: flex;
     align-items: center;
     margin: auto;
-    width: 450px;
-    height: 80px;
+    width: 370px;
+    height: 70px;
     background: #edf0f6;
     border-radius: 5px;
-}
-
-.input input{
-    height: 50px;
-    width: 500px;
-    background: transparent;
-    border: none;
-    outline: none;
-    color: #000000;
-    font-size: 25px;
-    padding-left: 20px;
-    padding-right: 20px;
-    opacity: 50%;
-    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 
-       'Lucida Sans', Arial, sans-serif; 
 }
 
 .input input[type="password"]::-ms-reveal {
@@ -96,26 +72,15 @@
 .eyecon span{
     cursor: pointer;
 }
-/*
-.forgot-password{
-    align-items: left;
-    padding-left: 0px;
-    margin-top: 30px;
-    color: #959999;
-    font-size: 18px;
-    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 
-       'Lucida Sans', Arial, sans-serif;
+
+.eyecon img{
+    width: 40px;
 }
 
-.forgot-password span{
-    color: #266b54;
-    cursor: pointer;
-}
-*/
 .login-button{
     display: flex;
     gap: 30px;
-    margin: 50px auto 25px;
+    margin: 40px auto 25px;
     font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 
        'Lucida Sans', Arial, sans-serif;
 }
@@ -124,12 +89,12 @@
     display: flex;
     justify-content: center; 
     align-items: center;
-    width: 350px;
-    height: 90px;
+    width: 260px;
+    height: 70px;
     color: #fff;
     background: #18694e;
     border-radius: 50px;
-    font-size: 29px;
+    font-size: 25px;
     font-weight: 400;
     cursor: pointer;
 }

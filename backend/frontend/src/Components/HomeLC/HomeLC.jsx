@@ -2,13 +2,19 @@ import './HomeLC.css';
 import logo_icon from '../Assets/Logo.png';
 import status1 from '../Assets/Status-ITR.png';
 import separator from '../Assets/Separator.png';
+import go_icon from '../Assets/GoButton.png'
 
 const HomeLC = () => {
+
+    const handleCreateNewPatientRecord = () => {
+        // Logic to create a new patient record
+    };
+
     return (
         <div className='lc-container'>
             <div className="lc-label">
                 <img src={logo_icon} alt="Logo" />
-                <div className='ITR'>Input Test Results</div>
+                <div className='lc-ITR'>Input Test Results</div>
             </div>
             
             <div className="lc-row">
@@ -24,18 +30,28 @@ const HomeLC = () => {
                         </div>
                     </div>       
                 </div>
-            
+
                 <div className="lc-separator">
                     <img src={separator} alt="separator"/>
                 </div>
                 
                 <div className="lc-column">
                     <div className="lc-new-c-p-r">
-                        <button>Create New Patient Record</button>
+                        <div className="lc-new-c-p-r-button" onClick={handleCreateNewPatientRecord}>
+                            <div className="lc-new-c-p-r-text">Create New Patient Record</div>
+                        </div>
                     </div>
 
                     <div className="lc-add-t-e-p-r">
-                        <button>Add to Existing Patient Record</button>
+                        <div className="lc-add-t-e-p-r-container">
+                            <div className="lc-add-t-e-p-r-text">Add to Existing Patient Record</div>
+                            <div className="lc-search">
+                                <input type="id" placeholder="Enter Patient ID Number"/>
+                                    <div className="lc-search-button">
+                                        <span><img src={go_icon} alt="search"></img></span>
+                                    </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

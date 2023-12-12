@@ -2,7 +2,7 @@
     display: flex;
     flex-direction: column;
     margin: auto;
-    margin-top: 3%;
+    margin-top: 5%;
     justify-content: center;
     align-items: center;   
     width: 90%;
@@ -17,25 +17,28 @@
     flex-direction: column;
     align-items: center;
     width: 100%;
-    margin-top: 70px;
-    margin-bottom: 40px;
+    margin-top: clamp(1.5rem, 2vw, 50px);
+    margin-bottom: clamp(1.5rem, 2vw, 30px);
 
-    gap: 25px;
+    gap: clamp(1.5rem, 2vw, 25px);
 
     color: #18694e;
-    font-size: 40px;
+    font-size: clamp(1.5rem, 2vw, 30px);
     font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 
        'Lucida Sans', Arial, sans-serif;
     font-weight: 600;
-    
+}
+
+.dn-logo img{
+    width: clamp(10rem, 10vw, 235px);
 }
 
 .dn-search{
     display: flex;
     align-items: center;
     margin: auto;
-    width: 50%;
-    height: 80px;
+    width: clamp(24rem, 50vw, 10000px);
+    height: 60px;
     background: #edf5f3;
     border-radius: 50px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -43,12 +46,12 @@
 
 .dn-search input{
     height: 50px;
-    width: 90%;
+    width: 100%;
     background: transparent;
     border: none;
     outline: none;
     color: #000000;
-    font-size: 25px;
+    font-size: 20px;
     padding-left: 40px;
     padding-right: 18px;
     opacity: 50%;
@@ -57,6 +60,7 @@
 }
 
 .dn-search-button {
+    padding-top: 3px;
     padding-right: 27px;
     opacity: 70%;
 }
@@ -72,11 +76,10 @@
     border: 1px solid #ccc; 
     border-radius: 40px;
     background-color: transparent; 
-    padding: 10px 10px 10px 10px; 
+    padding: 5px 5px 5px 5px; 
     max-width: 85%; 
     margin: auto;
-    margin-top: 50px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-top: clamp(2rem, 4vw, 40px);
 }
   
 .dn-p-h {
@@ -84,13 +87,14 @@
     text-align: center;
     padding: 10px; 
     font-size: auto;
-    font-size: 25px;
+    font-size: clamp(0rem, 2vw, 20px);
     font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 
     'Lucida Sans', Arial, sans-serif;
     color: #18694e;
 }
 
 .dn-p-h-separator {
+    text-align: center;
     opacity: 25%;
     font-size: 30px;
     padding-bottom: 0.5%;
