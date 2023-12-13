@@ -38,7 +38,7 @@ deactivate () {
 # unset irrelevant variables
 deactivate nondestructive
 
-VIRTUAL_ENV="C:\Users\user\Desktop\UP\CMSC 128.1\IHomRep\CS-128.1-Group\231208-project\new_test\env"
+VIRTUAL_ENV="C:\Users\user\Desktop\UP\CMSC 128.1\updatedproj\CS-128.1-Group\env"
 export VIRTUAL_ENV
 
 _OLD_VIRTUAL_PATH="$PATH"

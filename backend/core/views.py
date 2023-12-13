@@ -37,3 +37,5 @@ def api_data(request):
 
 class ReactView(TemplateView):
     template_name = 'index.html'
+    
+    

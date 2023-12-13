@@ -4,7 +4,7 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
-import { render } from '@testing-library/react';
+//import { render } from '@testing-library/react';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 const renderApp = () => {

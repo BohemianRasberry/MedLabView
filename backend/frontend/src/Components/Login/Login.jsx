@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './Login.css';
 import Userfront from "@userfront/core";
+import { useNavigate } from 'react-router-dom'; // Import useNavigate
 
 import logo_icon from '../Assets/Logo.png';
 import eyeOpen from '../Assets/EyeOpen.png';
