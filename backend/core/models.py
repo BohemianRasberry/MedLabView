@@ -5,7 +5,7 @@ class Clinic(models.Model):
     patho = models.CharField(max_length=20, default="", unique=True)
     medtech = models.CharField(max_length=20, default="", unique=True)
     
-class Patient(models.Model):
+'''class Patient(models.Model):
     SEX_CHOICES = (
         ('F', 'Female'), 
         ('M', 'Male'))
@@ -18,45 +18,69 @@ class Patient(models.Model):
     patient_AMD = models.CharField(max_length=50)
     
     def __str__(self) -> str:
-        return f"{self.patient_firstname} {self.patient_familyname}"
+        return f"{self.patient_firstname} {self.patient_familyname}"'''
+        
+class Patient(models.Model):
+    patientid = models.CharField(max_length=20, primary_key=True, default=1)
+    patientlastname = models.CharField(max_length=100, null=True)
+    patientfirstname = models.CharField(max_length=100, null=True)
+    patientmiddlename = models.CharField(max_length=100, blank=True, null=True)
+    dateofbirth = models.DateField()
+    sex = models.CharField(max_length=8, choices=[('Male', 'Male'), ('Female', 'Female')], default='Male')
+    age = models.IntegerField()
+    requesting_physician = models.CharField(max_length=100, default='DefaultPhysicianName')
+
+    def __str__(self):
+        return f"{self.patientid} - {self.patientlastname}, {self.patientfirstname}"
     
 class Pathologist(models.Model):
-    #pathologist_id = models.AutoField(primary_key=True)
-    pathologist_name = models.CharField(max_length=50, unique=True)
-    pathologist_prc_id = models.CharField(max_length=10, unique=True)
-    
-    default_ptahologist_id = 1  # You can set any default value here
+    pathoid = models.CharField(max_length=20, primary_key=True, default=1)
+    pathoname = models.CharField(max_length=100, default='Patho Name')
+    prcid = models.CharField(max_length=20, default=1)
+
+    def __str__(self):
+        return f"{self.pathoid} - {self.pathoname}"
     
 
 class Medtech(models.Model):
-    #medtech_id = models.AutoField(primary_key=True)
-    medtech_name = models.CharField(max_length=50, unique=True)
-    medtech_prc_id = models.CharField(max_length=10, unique=True)
+    medtechid = models.CharField(max_length=20, primary_key=True, default=1)
+    medtechname = models.CharField(max_length=100, default='Medtech Name')
+    prcid = models.CharField(max_length=20, default=1)
+
+    def __str__(self):
+        return f"{self.medtechid} - {self.medtechname}"
 
 class Specimen(models.Model):
     #specimen_id = models.AutoField(primary_key=True)
-    medtech_id = models.ForeignKey(Medtech, on_delete=models.SET_NULL, null=True)
-    patient_id = models.ForeignKey(Patient, on_delete=models.SET_NULL, null=True) 
+    specimenid = models.CharField(max_length=20, primary_key=True, default=1)
+    patientid = models.ForeignKey(Patient, on_delete=models.SET_NULL, null=True, to_field='patientid')
+    medtechid = models.ForeignKey(Medtech, on_delete=models.SET_NULL, null=True)
+    
+    def __str__(self):
+        return f"{self.specimenid} - {self.patientid}"
     
 class Transaction(models.Model):
-    #transaction_id = models.AutoField(primary_key=True)
-    test_code = models.IntegerField(null=True)
-    patient_id = models.ForeignKey(Patient, on_delete=models.SET_NULL, null=True)
-    pathologist_id = models.ForeignKey(Pathologist, on_delete=models.SET_NULL, null=True)
-    specimen_id = models.ForeignKey(Specimen, on_delete=models.SET_NULL, null=True)
-    datetime = models.DateTimeField()
+    transactionid = models.CharField(max_length=20, primary_key=True, default=1)
+    patientid = models.ForeignKey(Patient, on_delete=models.SET_NULL, null=True, to_field='patientid')
+    testid = models.CharField(max_length=20, default=1)
+    testcode = models.CharField(max_length=3, default=1)
+    specimenid = models.ForeignKey(Specimen, on_delete=models.SET_NULL, null=True, to_field='specimenid')
+    pathoid = models.ForeignKey(Pathologist, on_delete=models.SET_NULL, null=True, to_field='pathoid')
+    datetime = models.CharField(max_length=20, default=1)
     
 class Complete_Blood_Count(models.Model):
-    test_code = 1
-    specimen_id = models.ForeignKey(Transaction, on_delete=models.SET_NULL, null=True)
-    white_blood_cells = models.FloatField(default=0.0)
-    red_blood_cells = models.FloatField(default=0.00)
+    testid = models.CharField(max_length=20, primary_key=True, default=1)
+    testcode = models.CharField(max_length=3, default=1)
+    specimenid = models.ForeignKey(Transaction, on_delete=models.SET_NULL, null=True)
+    whitebloodcells = models.FloatField(default=0.0)
+    redbloodcells = models.FloatField(default=0.00)
     hematocrit = models.FloatField(default=0.0)
     hemaglobin = models.FloatField(default=0.0)
     mcv = models.FloatField(default=0.0)
     mch = models.FloatField(default=0.0)
     mchc = models.FloatField(default=0.0)
-    platelet_count = models.FloatField(default=0.0)
+    plateletcount = models.FloatField(default=0.0)
+    rdw = models.FloatField(default=0.0)
     neutrophil = models.FloatField(default=0.0)
     lymphocyte = models.FloatField(default=0.0)
     eosinophil = models.FloatField(default=0.0)
@@ -64,105 +88,122 @@ class Complete_Blood_Count(models.Model):
     basophil = models.FloatField(default=0.0)
     
 class BloodTyping(models.Model):
-    test_code = 2
-    specimen_id = models.ForeignKey(Transaction, on_delete=models.SET_NULL, null=True)
+    testid = models.CharField(max_length=20, primary_key=True, default=1)
+    testcode = models.CharField(max_length=3, default=2)
+    specimenid = models.ForeignKey(Transaction, on_delete=models.SET_NULL, null=True)
     BLOOD_TYPES_CHOICES = (
         ('A', 'A'), 
         ('B', 'B'), 
         ('AB', 'AB'),
         ('O', 'O'))
     RH_FACTOR_CHOICES = (
-        ('P', 'Positive'), 
-        ('N', 'Negative'))
-    blood_type = models.CharField(max_length=2, choices=BLOOD_TYPES_CHOICES)
-    rh_factor = models.CharField(max_length=1, choices=RH_FACTOR_CHOICES)
+        ('Positive', 'Positive'), 
+        ('Negative', 'Negative'))
+    bloodgroup = models.CharField(max_length=2, choices=BLOOD_TYPES_CHOICES)
+    rhfactor = models.CharField(max_length=8, choices=RH_FACTOR_CHOICES, default='Positve')
     
 class ESR(models.Model):
-    test_code = 3
-    specimen_id = models.ForeignKey(Transaction, on_delete=models.SET_NULL, null=True)
+    testid = models.CharField(max_length=20, primary_key=True, default=1)
+    testcode = models.CharField(max_length=3, default=3)
+    specimenid = models.ForeignKey(Transaction, on_delete=models.SET_NULL, null=True)
     esr = models.FloatField(default=0.0)
     
 class FBS(models.Model):
-    test_code = 4
-    specimen_id = models.ForeignKey(Transaction, on_delete=models.SET_NULL, null=True)
+    testid = models.CharField(max_length=20, primary_key=True, default=1)
+    testcode = models.CharField(max_length=3, default=4)
+    specimenid = models.ForeignKey(Transaction, on_delete=models.SET_NULL, null=True)
     fbs = models.FloatField(default=0.0)
     
 class Cholesterol(models.Model):
-    test_code = 5
-    specimen_id = models.ForeignKey(Transaction, on_delete=models.SET_NULL, null=True)
+    testid = models.CharField(max_length=20, primary_key=True, default=1)
+    testcode = models.CharField(max_length=3, default=5)
+    specimenid = models.ForeignKey(Transaction, on_delete=models.SET_NULL, null=True)
     cholesterol = models.FloatField(default=0.0)
     
 class Triglyceride(models.Model):
-    test_code = 6
-    specimen_id = models.ForeignKey(Transaction, on_delete=models.SET_NULL, null=True)
+    testid = models.CharField(max_length=20, primary_key=True, default=1)
+    testcode = models.CharField(max_length=3, default=6)
+    specimenid = models.ForeignKey(Transaction, on_delete=models.SET_NULL, null=True)
     triglyceride = models.FloatField(default=0.0)
     
 class HDL(models.Model):
-    test_code = 7
-    specimen_id = models.ForeignKey(Transaction, on_delete=models.SET_NULL, null=True)
+    testid = models.CharField(max_length=20, primary_key=True, default=1)
+    testcode = models.CharField(max_length=3, default=7)
+    specimenid = models.ForeignKey(Transaction, on_delete=models.SET_NULL, null=True)
     hdl = models.FloatField(default=0.0)
 
 class LDL(models.Model):
-    test_code = 8
-    specimen_id = models.ForeignKey(Transaction, on_delete=models.SET_NULL, null=True)
+    testid = models.CharField(max_length=20, primary_key=True, default=1)
+    testcode = models.CharField(max_length=3, default=8)
+    specimenid = models.ForeignKey(Transaction, on_delete=models.SET_NULL, null=True)
     ldl = models.FloatField(default=0.0)
     
 class VLDL(models.Model):
-    test_code = 9
-    specimen_id = models.ForeignKey(Transaction, on_delete=models.SET_NULL, null=True)
+    testid = models.CharField(max_length=20, primary_key=True, default=1)
+    testcode = models.CharField(max_length=3, default=9)
+    specimenid = models.ForeignKey(Transaction, on_delete=models.SET_NULL, null=True)
     vldl = models.FloatField(default=0.0)
     
 class BUN(models.Model):
-    test_code = 10
-    specimen_id = models.ForeignKey(Transaction, on_delete=models.SET_NULL, null=True)
+    testid = models.CharField(max_length=20, primary_key=True, default=1)
+    testcode = models.CharField(max_length=3, default=10)
+    specimenid = models.ForeignKey(Transaction, on_delete=models.SET_NULL, null=True)
     bun = models.FloatField(default=0.0)
     
 class Creatine(models.Model):
-    test_code = 11
-    specimen_id = models.ForeignKey(Transaction, on_delete=models.SET_NULL, null=True)
+    testid = models.CharField(max_length=20, primary_key=True, default=1)
+    testcode = models.CharField(max_length=3, default=11)
+    specimenid = models.ForeignKey(Transaction, on_delete=models.SET_NULL, null=True)
     creatine = models.FloatField(default=0.0)
     
 class BUA(models.Model):
-    test_code = 12
-    specimen_id = models.ForeignKey(Transaction, on_delete=models.SET_NULL, null=True)
+    testid = models.CharField(max_length=20, primary_key=True, default=1)
+    testcode = models.CharField(max_length=3, default=12)
+    specimenid = models.ForeignKey(Transaction, on_delete=models.SET_NULL, null=True)
     bua = models.FloatField(default=0.0)
     
 class AST(models.Model):
-    test_code = 13
-    specimen_id = models.ForeignKey(Transaction, on_delete=models.SET_NULL, null=True)
+    testid = models.CharField(max_length=20, primary_key=True, default=1)
+    testcode = models.CharField(max_length=3, default=13)
+    specimenid = models.ForeignKey(Transaction, on_delete=models.SET_NULL, null=True)
     ast = models.FloatField(default=0.0)
     
 class ALT(models.Model):
-    test_code = 14
-    specimen_id = models.ForeignKey(Transaction, on_delete=models.SET_NULL, null=True)
+    testid = models.CharField(max_length=20, primary_key=True, default=1)
+    testcode = models.CharField(max_length=3, default=14)
+    specimenid = models.ForeignKey(Transaction, on_delete=models.SET_NULL, null=True)
     alt = models.FloatField(default=0.0)
     
 class ALP(models.Model):
-    test_code = 15
-    specimen_id = models.ForeignKey(Transaction, on_delete=models.SET_NULL, null=True)
+    testid = models.CharField(max_length=20, primary_key=True, default=1)
+    testcode = models.CharField(max_length=3, default=15)
+    specimenid = models.ForeignKey(Transaction, on_delete=models.SET_NULL, null=True)
     alp = models.FloatField(default=0.0)
     
 class Sodium(models.Model):
-    test_code = 16
-    specimen_id = models.ForeignKey(Transaction, on_delete=models.SET_NULL, null=True)
+    testid = models.CharField(max_length=20, primary_key=True, default=1)
+    testcode = models.CharField(max_length=3, default=16)
+    specimenid = models.ForeignKey(Transaction, on_delete=models.SET_NULL, null=True)
     sodium = models.FloatField(default=0.0)
     
 class Potassium(models.Model):
-    test_code = 17
-    specimen_id = models.ForeignKey(Transaction, on_delete=models.SET_NULL, null=True)
+    testid = models.CharField(max_length=20, primary_key=True, default=1)
+    testcode = models.CharField(max_length=3, default=17)
+    specimenid = models.ForeignKey(Transaction, on_delete=models.SET_NULL, null=True)
     potassium = models.FloatField(default=0.0)
     
 class Calcium(models.Model):
-    test_code = 18
-    specimen_id = models.ForeignKey(Transaction, on_delete=models.SET_NULL, null=True)
+    testid = models.CharField(max_length=20, primary_key=True, default=1)
+    testcode = models.CharField(max_length=3, default=18)
+    specimenid = models.ForeignKey(Transaction, on_delete=models.SET_NULL, null=True)
     calcium = models.FloatField(default=0.0)
     
 class Urinalysis(models.Model):
-    test_code = 19
-    specimen_id = models.ForeignKey(Transaction, on_delete=models.SET_NULL, null=True)
+    testid = models.CharField(max_length=20, primary_key=True, default=1)
+    testcode = models.CharField(max_length=3, default=19)
+    specimenid = models.ForeignKey(Transaction, on_delete=models.SET_NULL, null=True)
     color = models.CharField(max_length=20, default='')
     transparency = models.CharField(max_length=20, default='')
-    #chemical_analysis
     glucose = models.FloatField(default=0.0)
     bilirubin = models.FloatField(default=0.0)
     ketone = models.FloatField(default=0.0)
@@ -188,8 +229,9 @@ class Pregnancy_Test(models.Model):
     PREGNANCY_CHOICES = (
         ('Positive', 'Positive'),
         ('Negative', 'Negative'))
-    test_code = 20
-    specimen_id = models.ForeignKey(Transaction, on_delete=models.SET_NULL, null=True)
+    testid = models.CharField(max_length=20, primary_key=True, default=1)
+    testcode = models.CharField(max_length=3, default=20)
+    specimenid = models.ForeignKey(Transaction, on_delete=models.SET_NULL, null=True)
     pregnancy_result = models.CharField(max_length=8, choices=PREGNANCY_CHOICES)
     
 class Fecalysis(models.Model):
@@ -207,38 +249,42 @@ class Fecalysis(models.Model):
         ('present', 'present'),
         ('absent', 'absent')
     )
-    test_code = 21
-    specimen_id = models.ForeignKey(Transaction, on_delete=models.SET_NULL, null=True)
+    testid = models.CharField(max_length=20, primary_key=True, default=1)
+    testcode = models.CharField(max_length=3, default=21)
+    specimenid = models.ForeignKey(Transaction, on_delete=models.SET_NULL, null=True)
     color_appearance = models.CharField(max_length=6, choices=COLOR_CHOICES)
     consistency = models.CharField(max_length=11, choices=CONSISTENCY_CHOICES)
     mucus = models.CharField(max_length=7, choices=PRESENT_ABSENT)
     blood = models.CharField(max_length=7, choices=PRESENT_ABSENT)
-    #pus_cells
-    #rbc
+    pus_cells = models.FloatField(default=0.0)
+    rbc = models.FloatField(default=0.0)
     ova = models.CharField(max_length=7, choices=PRESENT_ABSENT)
     cyst = models.CharField(max_length=7, choices=PRESENT_ABSENT)
     bacteria = models.CharField(max_length=7, choices=PRESENT_ABSENT)
-    other = models.CharField(max_length=50)
+    other = models.CharField(max_length=50, null=True)
     
 class FOBT(models.Model):
     FOBT_CHOICES = (
         ('Positive', 'Positive'),
         ('Negative', 'Negative'))
-    test_code = 22
-    specimen_id = models.ForeignKey(Transaction, on_delete=models.SET_NULL, null=True)
+    testid = models.CharField(max_length=20, primary_key=True, default=1)
+    testcode = models.CharField(max_length=3, default=22)
+    specimenid = models.ForeignKey(Transaction, on_delete=models.SET_NULL, null=True)
     fobt = models.CharField(max_length=8, choices=FOBT_CHOICES)
     
 class ASO(models.Model):
-    test_code = 23
-    specimen_id = models.ForeignKey(Transaction, on_delete=models.SET_NULL, null=True)
+    testid = models.CharField(max_length=20, primary_key=True, default=1)
+    testcode = models.CharField(max_length=3, default=23)
+    specimenid = models.ForeignKey(Transaction, on_delete=models.SET_NULL, null=True)
     aso = models.FloatField(default=0.0)
     
 class Dengue_Antibody(models.Model):
     POSITIVE_NEGATIVE_CHOICES = (
         ('Positive', 'Positive'),
         ('Negative', 'Negative'))
-    test_code = 24
-    specimen_id = models.ForeignKey(Transaction, on_delete=models.SET_NULL, null=True)
+    testid = models.CharField(max_length=20, primary_key=True, default=1)
+    testcode = models.CharField(max_length=3, default=24)
+    specimenid = models.ForeignKey(Transaction, on_delete=models.SET_NULL, null=True)
     igm = models.CharField(max_length=8, choices=POSITIVE_NEGATIVE_CHOICES)
     igg = models.CharField(max_length=8, choices=POSITIVE_NEGATIVE_CHOICES)
     
@@ -246,6 +292,7 @@ class Dengue_Antigen(models.Model):
     POSITIVE_NEGATIVE_CHOICES = (
         ('Positive', 'Positive'),
         ('Negative', 'Negative'))
-    test_code = 25
-    specimen_id = models.ForeignKey(Transaction, on_delete=models.SET_NULL, null=True)
+    testid = models.CharField(max_length=20, primary_key=True, default=1)
+    testcode = models.CharField(max_length=3, default=25)
+    specimenid = models.ForeignKey(Transaction, on_delete=models.SET_NULL, null=True)
     ns1 = models.CharField(max_length=8, choices=POSITIVE_NEGATIVE_CHOICES)

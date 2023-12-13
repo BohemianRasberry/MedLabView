@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -43,13 +44,16 @@
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
     <!-- <script src="{% static "frontend/main.js" %}"></script> -->
-    <!-- <script src="/static/js/main.js"></script> -->
+    <!-- <script src="/static/js/main.js"></script> 
     {% load static %}
+    {% load render_bundle from webpack_loader %}
     {% with manifest_path=STATICFILES_DIRS.0|add:'/build/'|add:'asset-manifest.json' %}
       {% with manifest=manifest_path|read_json as manifest_json %}
         <script src="{% static 'js/' %}{{ manifest['main.js'] }}"></script>
       {% endwith %}
-    {% endwith %}
+    {% endwith %} -->
+
+    <script src="/static/js/main.e5483453.js"></script>
 
   </body>
 </html>
