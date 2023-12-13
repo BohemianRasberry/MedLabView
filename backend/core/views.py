@@ -4,6 +4,7 @@ from rest_framework import generics
 from . serializers import ClassSerializers
 from . models import *
 from django.contrib.auth import authenticate, login
+from django.views.generic import TemplateView
 
 # Create your views here.
 
@@ -26,3 +27,13 @@ class ClinicView(generics.CreateAPIView):
     queryset = Clinic.objects.all()
     serializer_class = ClassSerializers
     
+def index(request, *args, **kwargs):
+    context = {}
+    return render(request, 'index.html', context)
+
+def api_data(request):
+    data = {'message': 'Hello from Django!'}
+    return JsonResponse(data)
+
+class ReactView(TemplateView):
+    template_name = 'index.html'

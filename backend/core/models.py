@@ -17,6 +17,9 @@ class Patient(models.Model):
     patient_birthday = models.DateField()
     patient_AMD = models.CharField(max_length=50)
     
+    def __str__(self) -> str:
+        return f"{self.patient_firstname} {self.patient_familyname}"
+    
 class Pathologist(models.Model):
     #pathologist_id = models.AutoField(primary_key=True)
     pathologist_name = models.CharField(max_length=50, unique=True)

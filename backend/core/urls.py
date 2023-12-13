@@ -7,5 +7,8 @@ urlpatterns = [
     path("clinic/", ClinicView.as_view()),
     path("home/", home, name="home"),
     path("base/", base, name="base"),
+    path("", index, name="index"),
+    path("api/", api_data, name="api_data"),
+    path("react/", ReactView.as_view(), name="react_app")
     
 ]

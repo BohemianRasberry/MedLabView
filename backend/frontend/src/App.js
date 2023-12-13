@@ -4,6 +4,8 @@ import PageHomeDN from './PageHomeDN';
 import PageHomeLC from './PageHomeLC';
 import PageLogin from './PageLogin';
 import Userfront from "@userfront/react";
+import React, { Component } from 'react';
+import { render } from 'react-dom';
 
 Userfront.init("8nwyy85n");
 
