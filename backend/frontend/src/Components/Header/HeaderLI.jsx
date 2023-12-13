@@ -19,28 +19,26 @@ const Header = () => {
 
     const navigateHome = () => {
         if (isLoggedIn) {
-            navigate('/homedn');
-        } else {
             navigate('/');
+        } else {
+            navigate('/login');
         }
     }
 
     return (
         <div className='header'>
-            <div onClick={navigateHome} style={{ cursor: 'pointer' }}>
+            <div onClick={navigateHome}>
                 <div className="title-short"><span>MSJK DTP</span></div>
                 <div className="title"><span>MSJK Diagnostic Test Portal</span></div>
             </div>
-            
-            {showLogoutButton && (
-                <button onClick={handleLogout} className="logout-button">
+
+            <button onClick={handleLogout} className="logout-button">
                     <span><div className='logout-button-text'>
                         Logout
                     </div></span>
-                </button>
-            )}
+            </button>
 
-            <div onClick={navigateHome} style={{ cursor: 'pointer' }}>
+            <div onClick={navigateHome}>
                 <div className="home">
                     <span><img src={home_icon} alt="Home" /></span>
                 </div>

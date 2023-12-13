@@ -15,17 +15,17 @@
     box-shadow: 0 -6px 10px 5px rgba(0,0,0,0.5);
 }
 
-.title-short {
+.title-short, .title-short-lo {
     display: none; /* Both logo and title-short are initially hidden */
     /* Set other necessary styles, if you have any for these classes */
 }
 
 @media screen and (max-width: 645px) {
-    .title {
+    .title, .title-lo {
         display: none; /* Hide the full title on small screens */
     }
 
-    .title-short {
+    .title-short, .title-short-lo {
         display: inline-flex; /* Show logo and short title on small screens */
         align-items: center; /* Center items vertically */
     }
@@ -41,24 +41,42 @@
     font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 
        'Lucida Sans', Arial, sans-serif;
     font-weight: 600;
+    cursor: pointer;
 }
 
-.title span{
-    cursor: pointer;
+.title-lo, .title-short-lo{
+    height: auto;
+    width: auto;
+    color: #727272a2;
+    font-size: 25px;
+    padding-left: 60px;
+    text-align: left;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 
+       'Lucida Sans', Arial, sans-serif;
+    font-weight: 600;
+    cursor: context-menu;
 }
 
 .home{
     padding-top: 5px;
     padding-right: 60px;
     text-align: center;
-}
-
-.home span{
     cursor: pointer;
 }
 
 .home img{
     width: 40px;
+}
+
+.home-lo{
+    padding-top: 5px;
+    padding-right: 60px;
+    text-align: center;
+}
+
+.home-lo img{
+    width: 40px;
+    opacity: 60%
 }
 
 .logout-button{

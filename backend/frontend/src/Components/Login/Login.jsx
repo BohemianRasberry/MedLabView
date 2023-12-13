@@ -16,11 +16,7 @@ const Login = () => {
     const navigate = useNavigate();
 
     const navigateAfterLogin = () => {
-        if (Userfront.user.hasRole("author")) {
-            navigate("/homelc");
-        } else if (Userfront.user.hasRole("viewer")) {
-            navigate("/homedn");
-        } 
+        navigate("/");
     }
 
     const handleLogin = async () => {
@@ -38,7 +34,7 @@ const Login = () => {
             if (response.error) {
                 alert("Incorrect email or password.");
             } else {
-                navigateAfterLogin(); // Call the navigation function after successful login
+                navigateAfterLogin(); 
             }
         };
 
