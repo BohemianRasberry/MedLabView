@@ -6,12 +6,10 @@ import home_icon from '../Assets/Home.png';
 import Userfront from "@userfront/core";
 
 const Header = () => {
-    const location = useLocation();
     const navigate = useNavigate();
     const isLoggedIn = Userfront.accessToken() !== null;
 
     // Do not show logout button on the login page
-    const showLogoutButton = isLoggedIn && location.pathname !== '/login'; 
 
     const handleLogout = () => {
         Userfront.logout();
