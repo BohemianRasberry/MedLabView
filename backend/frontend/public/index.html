@@ -43,6 +43,13 @@
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
     <!-- <script src="{% static "frontend/main.js" %}"></script> -->
-    <script src="/static/js/main.js"></script>
+    <!-- <script src="/static/js/main.js"></script> -->
+    {% load static %}
+    {% with manifest_path=STATICFILES_DIRS.0|add:'/build/'|add:'asset-manifest.json' %}
+      {% with manifest=manifest_path|read_json as manifest_json %}
+        <script src="{% static 'js/' %}{{ manifest['main.js'] }}"></script>
+      {% endwith %}
+    {% endwith %}
+
   </body>
 </html>
