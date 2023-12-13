@@ -27,7 +27,7 @@ class Patient(models.Model):
     patientmiddlename = models.CharField(max_length=100, blank=True, null=True)
     dateofbirth = models.DateField()
     sex = models.CharField(max_length=8, choices=[('Male', 'Male'), ('Female', 'Female')], default='Male')
-    age = models.IntegerField()
+    patient_age_new = models.IntegerField()
     requesting_physician = models.CharField(max_length=100, default='DefaultPhysicianName')
 
     def __str__(self):
@@ -61,8 +61,8 @@ class Specimen(models.Model):
     
 class Transaction(models.Model):
     transactionid = models.CharField(max_length=20, primary_key=True, default=1)
-    #patientid = models.ForeignKey(Patient, on_delete=models.SET_NULL, null=True, to_field='patientid')
-    patientid = models.CharField(max_length=20, default=1)
+    patientid = models.ForeignKey(Patient, on_delete=models.SET_NULL, null=True, to_field='patientid')
+    #patientid = models.CharField(max_length=20, default=1)
     testid = models.CharField(max_length=20, default=1)
     testcode = models.CharField(max_length=3, default=1)
     specimenid = models.ForeignKey(Specimen, on_delete=models.SET_NULL, null=True, to_field='specimenid')
