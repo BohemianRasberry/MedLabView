@@ -61,7 +61,8 @@ class Specimen(models.Model):
     
 class Transaction(models.Model):
     transactionid = models.CharField(max_length=20, primary_key=True, default=1)
-    patientid = models.ForeignKey(Patient, on_delete=models.SET_NULL, null=True, to_field='patientid')
+    #patientid = models.ForeignKey(Patient, on_delete=models.SET_NULL, null=True, to_field='patientid')
+    patientid = models.CharField(max_length=20, default=1)
     testid = models.CharField(max_length=20, default=1)
     testcode = models.CharField(max_length=3, default=1)
     specimenid = models.ForeignKey(Specimen, on_delete=models.SET_NULL, null=True, to_field='specimenid')
