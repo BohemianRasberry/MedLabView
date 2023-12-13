@@ -1,6 +1,7 @@
 import './App.css';
 import { Routes, Route, Navigate, useLocation } from "react-router-dom";
 import PageHomeDN from './PageHomeDN';
+import PageHDNPatient from './PageHDNPatient';
 import PageHomeLC from './PageHomeLC';
 import PageHomeMT from './PageHomeMT';
 import PageHomePG from './PageHomePG';
@@ -42,6 +43,7 @@ function App() {
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/login" element={<PrivateRoute><PageLogin /></PrivateRoute>} />
+      <Route path="/patient" element={<PageHDNPatient/>}/>
     </Routes>
   );
 }

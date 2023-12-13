@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import './HomeDN.css';
 import logo_icon from '../Assets/Logo.png';
 import search_icon from '../Assets/SearchButton.png';
+import { useNavigate } from 'react-router-dom';
 
 const initialPatientData = [
     { id: '12345', lastName: 'Doe', firstName: 'John', dob: '1980-01-01' },
@@ -46,6 +47,11 @@ const HomeDN = () => {
         }
     };
 
+    const navigate = useNavigate();
+
+    const redirectToPatientView = () => {
+        navigate('/patient');
+    };
     useEffect(() => {
         // Check on mount
         checkForScrollbar();
@@ -83,7 +89,7 @@ const HomeDN = () => {
                     <div className="dn-patients-table">
                         {patients.map((patient, index) => (
                             <div key={index} className="dn-patients-row">
-                                <button className="dn-p-r-cell">{patient.id}</button>
+                                <button className="dn-p-r-cell" onClick={redirectToPatientView}>{patient.id}</button>
                                 <div className="dn-p-h-separator">|</div>
                                 <div className="dn-p-r-cell">{patient.lastName}</div>
                                 <div className="dn-p-h-separator">|</div>
