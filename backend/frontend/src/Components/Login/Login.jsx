@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import './Login.css';
 import Userfront from "@userfront/core";
-import axios from 'axios';
 
 import logo_icon from '../Assets/Logo.png';
 import eyeOpen from '../Assets/EyeOpen.png';
@@ -13,30 +12,35 @@ const Login = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [visible, setVisible] = useState(false);
+    const navigate = useNavigate();
+
+    const navigateAfterLogin = () => {
+        if (Userfront.user.hasRole("author")) {
+            navigate("/homelc");
+        } else if (Userfront.user.hasRole("viewer")) {
+            navigate("/homedn");
+        } 
+    }
 
     const handleLogin = async () => {
         if (!email.trim() || !password.trim()) {
             alert("Email and password cannot be blank.");
             return;
         }
-    
-        try {
+
             const response = await Userfront.login({
                 method: "password",
                 email: email,
                 password: password,
             });
-            // Check response here for any error indications
+
             if (response.error) {
-                alert("Incorrect email or password."); // Update with a more user-friendly message
+                alert("Incorrect email or password.");
             } else {
-                // Redirect or perform actions after successful login
+                navigateAfterLogin(); // Call the navigation function after successful login
             }
-        } catch (error) {
-            console.error("Login error:", error);
-            // Handle other types of login failures
-        }
-    };
+        };
+
     return (
         <div className='login-container'>
             <div className="logo">

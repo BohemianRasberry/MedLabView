@@ -1,48 +1,42 @@
 import './App.css';
-import { Routes, Route, Navigate } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import PageHomeDN from './PageHomeDN';
 import PageHomeLC from './PageHomeLC';
+import PageHomeMT from './PageHomeMT';
+import PageHomePG from './PageHomePG';
+import PageAdmin from './PageAdmin';
+
 import PageLogin from './PageLogin';
+
 import Userfront from "@userfront/react";
 import React, { Component } from 'react';
 import { render } from 'react-dom';
 
 Userfront.init("8nwyy85n");
 
+function Home() {
+  if (!Userfront.accessToken()) {
+    return <PageLogin />;
+  } else if (Userfront.user.hasRole("viewer")) { /*Doctor/Nurse*/
+    return <PageHomeDN />;
+  } else if (Userfront.user.hasRole("author")) { /*Lab Clerk*/
+    return <PageHomeLC />;
+  } else if (Userfront.user.hasRole("support")) { /*Medtech*/
+    return <PageHomeMT />;
+  } else if (Userfront.user.hasRole("subscriber")) { /*Pathologist*/
+    return <PageHomePG />;
+  } else if (Userfront.user.hasRole("admin")) { /*admin*/
+    return <PageAdmin />;
+  }
+  // Redirect or show default content for users without a role
+  return <div>Default Content</div>;
+}
+
 function App() {
-  function RedirectToHomeIfLoggedIn() {
-    if (Userfront.accessToken()) {
-      // If user is logged in, redirect them to /home
-      return <Navigate to="/" replace />;
-    } else {
-      // Otherwise, show the login page
-      return <PageLogin />;
-    }
-  }
-
-  function RequireAuth({ children }) {
-    if (!Userfront.accessToken()) {
-      // Redirect them to the /login page, but save the current location they were trying to go to
-      return <Navigate to="/login" state={{ from: window.location.pathname }} replace />;
-    }
-
-    return children;
-  }
-
   return (
     <Routes>
-      <Route path="/" element={<PageHomeDN />} />
-      <Route path="/login" element={<RedirectToHomeIfLoggedIn />} />
-      <Route path="/homedn" element={
-        <RequireAuth>
-          <PageHomeDN />
-        </RequireAuth>
-      } />
-      <Route path="/homeLC" element={
-        <RequireAuth>
-          <PageHomeLC />
-        </RequireAuth>
-      } />
+      <Route path="/" element={<Home />} />
+      <Route path="/login" element={<PageLogin />} />
     </Routes>
   );
 }
