@@ -21,13 +21,13 @@ const HDNPI = () => {
 
                 <div className="hdnpi-patient-detailed-info-header-row">
                     <div className="hdnpi-patients-header">
-                        <div className="hdnpi-p-h">Patient ID Number</div>
+                        <div className="hdnpi-p-h">Date & Time Given</div>
                         <div className="hdnpi-p-h-separator">|</div>
-                        <div className="hdnpi-p-h">Family Name</div>
+                        <div className="hdnpi-p-h">Specimen Number</div>
                         <div className="hdnpi-p-h-separator">|</div>
-                        <div className="hdnpi-p-h">First Name</div>
+                        <div className="hdnpi-p-h">Laboratory Test</div>
                         <div className="hdnpi-p-h-separator">|</div>
-                        <div className="hdnpi-p-h">Date of Birth</div>
+                        <div className="hdnpi-p-h">Laboratory Test ID</div>
                     </div>
 
                     <div className="hdnpi-patients-table-container">
