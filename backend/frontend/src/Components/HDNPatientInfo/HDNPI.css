@@ -23,7 +23,7 @@
     gap: clamp(1rem, 1vw, 10px);
 
     color: #18694e;
-    font-size: clamp(1.5rem, 2vw, 30px);
+    font-size: clamp(1.5rem, 2vw, 35px);
     font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 
        'Lucida Sans', Arial, sans-serif;
     font-weight: 600;
@@ -35,8 +35,6 @@
 
 .hdnpi-info-container{
     width: 90%;
-    background: #ff0000;
-    border-radius: 40px;
     margin-bottom: 1%;
 }
 
@@ -56,20 +54,22 @@
 .hdnpi-p-i-h-t-indiv{
     flex: 1; /* This allows the items to grow and fill the space equally */
     text-align: start;
-    padding: 10px; 
-    font-size: clamp(0.75rem, 2vw, 20px); /* Adjusted the minimum size to prevent it from going to 0 */
+    padding: 10px;
+    margin-left: 10px; 
+    font-size: clamp(0.75rem, 2vw, 15px); /* Adjusted the minimum size to prevent it from going to 0 */
     font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 
     'Lucida Sans', Arial, sans-serif;
-    color: #18694e;
+    color: #6f6f6f;
 }
 
 .hdnpi-patient-detailed-info-header-row{
-    width: 90%;
+    width: 100%;
     background: #edf5f3;
     border-radius: 40px;
     margin-top: clamp(2rem, 2vw, 100px);
     margin-bottom: 1%;
 }
+
 .hdnpi-patients-header{
     display: flex;
     justify-content: space-between;
@@ -80,4 +80,23 @@
     padding: 5px 5px 5px 5px; 
     max-width: 100%; 
     margin: auto;
+}
+
+.hdnpi-p-h{
+    width: 100%;
+    text-align: center;
+    padding: 10px; 
+    font-size: auto;
+    font-size: clamp(0rem, 2vw, 20px);
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 
+    'Lucida Sans', Arial, sans-serif;
+    color: #18694e;
+}
+
+.hdnpi-p-h-separator{
+    text-align: center;
+    opacity: 25%;
+    font-size: clamp(1.5rem, 0vw, 30px);
+    padding-bottom: 0.5%;
+    cursor: context-menu;
 }
