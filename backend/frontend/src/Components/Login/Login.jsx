@@ -13,6 +13,7 @@ const Login = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [visible, setVisible] = useState(false);
+    const [isLoading, setIsLoading] = useState(false); // Add isLoading state
     const navigate = useNavigate();
 
     const navigateAfterLogin = () => {
@@ -24,19 +25,27 @@ const Login = () => {
             alert("Email and password cannot be blank.");
             return;
         }
-
+    
+        try {
+            setIsLoading(true);
+    
             const response = await Userfront.login({
                 method: "password",
                 email: email,
                 password: password,
             });
-
-            if (response.error) {
-                alert("Incorrect email or password.");
-            } else {
-                navigateAfterLogin(); 
+    
+            console.log("Login Response:", response);
+    
+            if (response?.success === true) {
+                navigateAfterLogin();
             }
-        };
+        } catch (error) {
+            alert("Incorrect username and password.");
+        } finally {
+            setIsLoading(false);
+        }
+    };
 
     return (
         <div className='login-container'>
@@ -72,7 +81,12 @@ const Login = () => {
             </div>
 
             <div className="login-button" onClick={handleLogin}>
-                <div className="login-button-text">Login</div>
+                {/* Show loading text or spinner based on isLoading state */}
+                {isLoading ? (
+                    <div className="login-button-text">Logging in...</div>
+                ) : (
+                    <div className="login-button-text">Login</div>
+                )}
             </div>
         </div>
     );
