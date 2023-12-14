@@ -155,3 +155,8 @@
     border: none;
     background: none;
 }
+
+.hdnpi-patients-row button:hover {
+    color: #2ad39b;
+    cursor: pointer;
+}

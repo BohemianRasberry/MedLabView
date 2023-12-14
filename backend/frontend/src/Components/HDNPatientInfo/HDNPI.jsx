@@ -81,7 +81,9 @@ const HDNPI = () => {
                                 <div className="hdnpi-p-h-separator">|</div>
                                 <div className="hdnpi-p-h-cell">{getTestName(transaction.testcode)}</div>
                                 <div className="hdnpi-p-h-separator">|</div>
-                                <div className="hdnpi-p-h-cell">{transaction.transactionid}</div>
+                                <button className="hdnpi-p-h-cell" /*onClick={() => 
+                                    redirectToPatientView(user.patientid)}>
+                                {user.patientid}*/>{transaction.transactionid}</button>
                             </div>
                         ))}
                     </div>
