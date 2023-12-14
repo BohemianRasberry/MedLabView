@@ -7,6 +7,7 @@ import PageHomeMT from './PageHomeMT';
 import PageHomePG from './PageHomePG';
 import PageAdmin from './PageAdmin';
 import PageLogin from './PageLogin';
+import PageHomeTester from './PageHomeTester'
 import Userfront from "@userfront/react";
 import React from 'react';
 
@@ -44,6 +45,7 @@ function App() {
       <Route path="/" element={<Home />} />
       <Route path="/login" element={<PrivateRoute><PageLogin /></PrivateRoute>} />
       <Route path="/patient" element={<PageHDNPatient/>}/>
+      <Route path="/tester" element={<PageHomeTester/>}/>
     </Routes>
   );
 }
