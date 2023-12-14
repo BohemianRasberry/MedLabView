@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import logo_icon from '../Assets/Logo.png';
-import './HDNPI.css';
+import './HDNPID.css';
 import { useParams } from 'react-router-dom';
 import { db } from '../../Firebase';
 import { doc, getDoc, query, collection, where, getDocs } from 'firebase/firestore'; // Import the necessary functions

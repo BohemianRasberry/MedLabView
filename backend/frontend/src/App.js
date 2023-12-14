@@ -46,6 +46,7 @@ function App() {
       />
       <Route path="/login" element={<PageLogin />} />
       <Route path="/patient/:patientId" element={<PageHDNPatient/>}/>
+      <Route path="/patient/:patientId/:transactionid" element={<PageHDNPatient/>}/>
     </Routes>
   );
 }
