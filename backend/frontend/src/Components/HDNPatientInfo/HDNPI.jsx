@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import logo_icon from '../Assets/Logo.png';
 import './HDNPI.css';
 import { useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { db } from '../../Firebase';
 import { doc, getDoc, query, collection, where, getDocs } from 'firebase/firestore'; // Import the necessary functions
 
@@ -38,6 +39,16 @@ const HDNPI = () => {
         fetchPatientData();
         fetchTransactions();
     }, [patientId]);
+
+    const navigate = useNavigate();
+
+    const redirectToPatientView = (patientId, testCode, transactionId) => {
+        // Add your logic to redirect to the new view with the provided parameters
+        console.log(`Redirecting to patient view for Patient ID: ${patientId}, Test Code: ${testCode}, Transaction ID: ${transactionId}`);
+        // Example navigation using react-router-dom
+        navigate(`/patient/${patientId}/${testCode}/${transactionId}`);
+        // history.push(`/new-view/${patientId}/${testCode}/${transactionId}`);
+    };
 
     return (
         <div className="hdnpi-container">
@@ -81,9 +92,11 @@ const HDNPI = () => {
                                 <div className="hdnpi-p-h-separator">|</div>
                                 <div className="hdnpi-p-h-cell">{getTestName(transaction.testcode)}</div>
                                 <div className="hdnpi-p-h-separator">|</div>
-                                <button className="hdnpi-p-h-cell" /*onClick={() => 
-                                    redirectToPatientView(user.patientid)}>
-                                {user.patientid}*/>{transaction.transactionid}</button>
+                                <button
+                                    className="hdnpi-p-h-cell"
+                                    onClick={() => redirectToPatientView(transaction.patientid, transaction.testcode, transaction.id)}>
+                                    {transaction.transactionid}
+                                </button>
                             </div>
                         ))}
                     </div>
