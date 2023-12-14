@@ -1,0 +1,83 @@
+.hdnpi-container{
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    margin-top: 4%;
+    justify-content: center;
+    align-items: center;   
+    width: 90%;
+    background: #fff;
+    padding-bottom: 30px;
+    border-radius: 50px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.hdnpi-title{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin-top: clamp(1.5rem, 2vw, 50px);
+    margin-bottom: clamp(1.5rem, 2vw, 30px);
+
+    gap: clamp(1rem, 1vw, 10px);
+
+    color: #18694e;
+    font-size: clamp(1.5rem, 2vw, 30px);
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 
+       'Lucida Sans', Arial, sans-serif;
+    font-weight: 600;
+}
+
+.hdnpi-title img{
+    width: clamp(10rem, 9vw, 235px);
+}
+
+.hdnpi-info-container{
+    width: 90%;
+    background: #ff0000;
+    border-radius: 40px;
+    margin-bottom: 1%;
+}
+
+.hdnpi-patient-info-header-row{
+    display: flex;
+    flex-direction: start;
+    justify-content: space-between; /* or 'space-between' or 'space-around' depending on your design */
+    align-items: center;
+    border-radius: 40px;
+    background-color: #edf5f3; 
+    padding: 5px; 
+    max-width: 100%; 
+    margin: auto;
+    flex-wrap: wrap; /* Allows items to wrap to the next line if the screen is too small */
+}
+
+.hdnpi-p-i-h-t-indiv{
+    flex: 1; /* This allows the items to grow and fill the space equally */
+    text-align: start;
+    padding: 10px; 
+    font-size: clamp(0.75rem, 2vw, 20px); /* Adjusted the minimum size to prevent it from going to 0 */
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 
+    'Lucida Sans', Arial, sans-serif;
+    color: #18694e;
+}
+
+.hdnpi-patient-detailed-info-header-row{
+    width: 90%;
+    background: #edf5f3;
+    border-radius: 40px;
+    margin-top: clamp(2rem, 2vw, 100px);
+    margin-bottom: 1%;
+}
+.hdnpi-patients-header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid #ccc; 
+    border-radius: 40px;
+    background-color: #ffffff; 
+    padding: 5px 5px 5px 5px; 
+    max-width: 100%; 
+    margin: auto;
+}

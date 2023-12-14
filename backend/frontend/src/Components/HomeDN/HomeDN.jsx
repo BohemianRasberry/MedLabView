@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import { db } from '../../Firebase';
 import { collection, query, where, getDocs } from 'firebase/firestore';
 
-const HomeTester = () => {
+const HomeDN = () => {
     const [searchInput, setSearchInput] = useState('');
     const [isScrollbarVisible, setIsScrollbarVisible] = useState(false);
     const tableContainerRef = useRef(null);
@@ -51,8 +51,6 @@ const HomeTester = () => {
         handleSearch();
     }, []); // Empty dependency array to ensure it runs only once on mount
 
-    
-
     useEffect(() => {
         // Check for scrollbar on mount and window resize
         checkForScrollbar();
@@ -73,6 +71,7 @@ const HomeTester = () => {
                     <span><img src={search_icon} alt="search"></img></span>
                 </div>
             </div>
+            
             <div className="dn-patients">
                 <div className="dn-patients-header">
                     <div className="dn-p-h">Patient ID Number</div>
@@ -105,4 +104,4 @@ const HomeTester = () => {
     
 };
 
-export default HomeTester;
+export default HomeDN;
