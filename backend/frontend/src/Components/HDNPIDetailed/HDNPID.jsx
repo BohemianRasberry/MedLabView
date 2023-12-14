@@ -97,7 +97,7 @@ const HDNPID = () => {
                     <div className="hdnpi-p-h-separator">|</div>
                     <div className="hdnpi-p-h">Reference Range</div>
                     <div className="hdnpi-p-h-separator">|</div>
-                    <div className="hdnpi-p-h">Laboratory Test ID</div>
+                    <div className="hdnpi-p-h"></div>
                 </div>
 
                 <div className={`hdnpi-patients-table-container ${isScrollbarVisible ? '' : 'add-padding'}`} ref={tableContainerRef}>
