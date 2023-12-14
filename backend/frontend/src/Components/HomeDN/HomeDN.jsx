@@ -42,8 +42,8 @@ const HomeDN = () => {
 
     const navigate = useNavigate();
 
-    const redirectToPatientView = () => {
-        navigate('/patient');
+    const redirectToPatientView = (patientId) => {
+        navigate(`/patient/${patientId}`);
     };
 
     useEffect(() => {
@@ -87,7 +87,10 @@ const HomeDN = () => {
                     <div className="dn-patients-table">
                         {patients.map((user) => (
                             <div key={user.id} className="dn-patients-row">
-                                <button className="dn-p-r-cell" onClick={redirectToPatientView}>{user.patientid}</button>
+                                <button className="dn-p-r-cell" onClick={() => 
+                                    redirectToPatientView(user.patientid)}>
+                                        {user.patientid}
+                                        </button>
                                 <div className="dn-p-h-separator">|</div>
                                 <div className="dn-p-r-cell">{user.patientlastname}</div>
                                 <div className="dn-p-h-separator">|</div>

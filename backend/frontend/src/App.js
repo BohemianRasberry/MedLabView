@@ -43,7 +43,7 @@ function App() {
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/login" element={<PrivateRoute><PageLogin /></PrivateRoute>} />
-      <Route path="/patient" element={<PageHDNPatient/>}/>
+      <Route path="/patient/:patientId" element={<PageHDNPatient/>}/>
     </Routes>
   );
 }
