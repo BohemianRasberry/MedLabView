@@ -5,39 +5,71 @@ import { useParams } from 'react-router-dom';
 import { db } from '../../Firebase';
 import { doc, getDoc, query, collection, where, getDocs } from 'firebase/firestore'; // Import the necessary functions
 
-const HDNPI = () => {
-    const { patientId } = useParams();
+const HDNPID = () => {
+    const { patientId, testCode, testId } = useParams();
     const [patientData, setPatientData] = useState(null);
-    const [transactions, setTransactions] = useState([]);
-
+    const [transactionData, setTransactionData] = useState(null);
+  
+    const collectionMapping = {
+      '1': 'cbc',
+      '2': 'bloodtyping',
+      '3': 'esr',
+      '4': 'fbs',
+      '5': 'cholesterol',
+      '6': 'triglyceride',
+      '7': 'hdl',
+      '8': 'ldl',
+      '9': 'vldl',
+      '10': 'bun',
+      '11': 'creatine',
+      '12': 'bua',
+      '13': 'ast',
+      '14': 'alt',
+      '15': 'alp',
+      '16': 'sodium',
+      '17': 'potassium',
+      '18': 'calcium',
+      '19': 'urinalysis',
+      '20': 'pregnancy_test',
+      '21': 'fecalysis',
+      '22': 'fobt',
+      '23': 'aso',
+      '24': 'dengue_antibody',
+      '25': 'dengue_antigen',
+      // Add more mappings as needed
+    };
+  
     useEffect(() => {
-        const fetchPatientData = async () => {
-            try {
-                const patientDocRef = doc(db, 'patients', patientId);
-                const patientDocSnapshot = await getDoc(patientDocRef);
-                if (patientDocSnapshot.exists()) {
-                    setPatientData({ ...patientDocSnapshot.data(), id: patientDocSnapshot.id });
-                } else {
-                    console.log(`No patient found with ID: ${patientId}`);
-                }
-            } catch (error) {
-                console.error('Error fetching patient data:', error.message);
+        const fetchData = async () => {
+          try {
+            // Fetch patient data
+            const patientDocRef = doc(db, 'patients', patientId);
+            const patientDocSnapshot = await getDoc(patientDocRef);
+    
+            if (patientDocSnapshot.exists()) {
+              setPatientData({ ...patientDocSnapshot.data(), id: patientDocSnapshot.id });
+            } else {
+              console.log(`No patient found with ID: ${patientId}`);
             }
-        };
-
-        const fetchTransactions = async () => {
-            try {
-                const transactionsQuery = query(collection(db, 'transaction'), where('patientid', '==', patientId));
-                const transactionsSnapshot = await getDocs(transactionsQuery);
-                setTransactions(transactionsSnapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
-            } catch (error) {
-                console.error('Error fetching transactions:', error.message);
+    
+            // Fetch data from different collections based on testCode and testId
+            const collectionName = collectionMapping[testCode];
+            const collectionRef = collection(db, collectionName);
+            const testDocRef = doc(collectionRef, testId);
+            const testDocSnapshot = await getDoc(testDocRef);
+    
+            if (testDocSnapshot.exists()) {
+              setTransactionData({ ...testDocSnapshot.data(), id: testDocSnapshot.id });
+            } else {
+              console.log(`No data found for testCode: ${testCode}, testId: ${testId}`);
             }
+          } catch (error) {
+            console.error('Error fetching data:', error.message);
+          }
         };
-
-        fetchPatientData();
-        fetchTransactions();
-    }, [patientId]);
+    
+        fetchData();
+      }, [patientId, testCode, testId]);
 
     return (
         <div className="hdnpi-container">
@@ -61,29 +93,29 @@ const HDNPI = () => {
                 )}
             <div className="hdnpi-patient-detailed-info-header-row">
                 <div className="hdnpi-patients-header">
-                    <div className="hdnpi-p-h">Unit</div>
+                    <div className="hdnpi-p-h">Test ID</div>
                     <div className="hdnpi-p-h-separator">|</div>
                     <div className="hdnpi-p-h">Result</div>
                     <div className="hdnpi-p-h-separator">|</div>
-                    <div className="hdnpi-p-h">Reference Range</div>
+                    <div className="hdnpi-p-h">Specimen ID</div>
                     <div className="hdnpi-p-h-separator">|</div>
                     <div className="hdnpi-p-h"></div>
                 </div>
 
                 <div className="hdnpi-patients-table-container">
                     <div className="hdnpi-p-t-c-table">
-                        {/* Display transactions */}
-                        {transactions.map((transaction) => (
-                            <div key={transaction.id} className="hdnpi-patients-row">
-                                <div className="hdnpi-p-h-cell">{transaction.datetime}</div>
-                                <div className="hdnpi-p-h-separator">|</div>
-                                <div className="hdnpi-p-h-cell">{transaction.specimenid}</div>
-                                <div className="hdnpi-p-h-separator">|</div>
-                                <div className="hdnpi-p-h-cell">{getTestName(transaction.testcode)}</div>
-                                <div className="hdnpi-p-h-separator">|</div>
-                                <div className="hdnpi-p-h-cell">{transaction.transactionid}</div>
-                            </div>
-                        ))}
+                    {/* Display data from the retrieved collection */}
+                    {transactionData && (
+                        <div className="hdnpi-patients-row">
+                        <div className="hdnpi-p-h-cell">{transactionData.testid}</div>
+                        <div className="hdnpi-p-h-separator">|</div>
+                        <div className="hdnpi-p-h-cell">{transactionData[getTestName(transactionData.testcode)]}</div>
+                        <div className="hdnpi-p-h-separator">|</div>
+                        <div className="hdnpi-p-h-cell">{transactionData.specimenid}</div>
+                        <div className="hdnpi-p-h-separator">|</div>
+                        <div className="hdnpi-p-h-cell">{}</div>
+                        </div>
+                    )}
                     </div>
                 </div>
             </div>
@@ -95,58 +127,58 @@ const HDNPI = () => {
 const getTestName = (testCode) => {
     switch (testCode) {
         case '1':
-            return 'Complete Blood Count';
+            return 'cbc';
         case '2':
-            return 'Blood Typing';
+            return 'bloodtyping';
         case '3':
-            return 'Erythrocyte Sedimentation Rate';
+            return 'esr';
         case '4':
-            return 'Fasting Blood Sugar';
+            return 'fbs';
         case '5':
-            return 'Cholesterol';
+            return 'cholesterol';
         case '6':
-            return 'Triglyceride';
+            return 'triglyceride';
         case '7':
-            return 'High Density Lipoprotein';
+            return 'hdl';
         case '8':
-            return 'Low Density Lipoprotein';
+            return 'ldl';
         case '9':
-            return 'Very Low Density Lipoprotein';
+            return 'vldl';
         case '10':
-            return 'Blood Urea Nitrogen';
+            return 'bun';
         case '11':
-            return 'Creatinine';
+            return 'creatine';
         case '12':
-            return 'Blood Uric Acid';
+            return 'bua';
         case '13':
-            return 'Aspartate Transaminase';
+            return 'ast';
         case '14':
-            return 'Alanine Transaminase';
+            return 'alt';
         case '15':
-            return 'Alkaline Phosphatase';
+            return 'alp';
         case '16':
-            return 'Sodium';
+            return 'sodium';
         case '17':
-            return 'Potassium';
+            return 'potassium';
         case '18':
-            return 'Ionized Calcium';
+            return 'calcium';
         case '19':
-            return 'Routine Urinalysis';
+            return 'urinalysis';
         case '20':
-            return 'Pregnancy Test';
+            return 'pregnancy_test';
         case '21':
-            return 'Routine fecalysis';
+            return 'fecalysis';
         case '22':
-            return 'Fecal Occult Blood Test';
+            return 'fobt';
         case '23':
-            return 'Anti-Streptolysin O Titer';
+            return 'aso';
         case '24':
-            return 'Dengue Antibody (IgG,IgM)';
+            return 'dengue_antibody';
         case '25':
-            return 'Dengue antigen (NS1)';
+            return 'dengue_antigen';
         default:
             return `Test ${testCode}`;
     }
 };
 
-export default HDNPI;
+export default HDNPID;

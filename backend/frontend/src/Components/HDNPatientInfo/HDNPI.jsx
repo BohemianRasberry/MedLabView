@@ -42,11 +42,11 @@ const HDNPI = () => {
 
     const navigate = useNavigate();
 
-    const redirectToPatientView = (patientId, testCode, transactionId) => {
+    const redirectToPatientView = (patientId, testCode, testId) => {
         // Add your logic to redirect to the new view with the provided parameters
-        console.log(`Redirecting to patient view for Patient ID: ${patientId}, Test Code: ${testCode}, Transaction ID: ${transactionId}`);
+        console.log(`Redirecting to patient view for Patient ID: ${patientId}, Test Code: ${testCode}, Test ID: ${testId}`);
         // Example navigation using react-router-dom
-        navigate(`/patient/${patientId}/${testCode}/${transactionId}`);
+        navigate(`/patient/${patientId}/${testCode}/${testId}`);
         // history.push(`/new-view/${patientId}/${testCode}/${transactionId}`);
     };
 
@@ -94,8 +94,8 @@ const HDNPI = () => {
                                 <div className="hdnpi-p-h-separator">|</div>
                                 <button
                                     className="hdnpi-p-h-cell"
-                                    onClick={() => redirectToPatientView(transaction.patientid, transaction.testcode, transaction.id)}>
-                                    {transaction.transactionid}
+                                    onClick={() => redirectToPatientView(transaction.patientid, transaction.testcode, transaction.testid)}>
+                                    {transaction.testid}
                                 </button>
                             </div>
                         ))}
