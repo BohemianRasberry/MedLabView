@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import logo_icon from '../Assets/Logo.png';
 import './HDNPI.css';
 import { useParams } from 'react-router-dom';
@@ -78,6 +78,8 @@ const labTestData = [
 const HDNPI = () => {
 
     const { patientId } = useParams();
+    const [isScrollbarVisible, setIsScrollbarVisible] = useState(false);
+    const tableContainerRef = useRef(null);
     const [patientData, setPatientData] = useState(null);
 
     useEffect(() => {
@@ -129,7 +131,7 @@ const HDNPI = () => {
                         <div className="hdnpi-p-h">Laboratory Test ID</div>
                     </div>
 
-                    <div className="hdnpi-patients-table-container">
+                    <div className={`hdnpi-patients-table-container ${!isScrollbarVisible ? 'add-padding' : ''}`} ref={tableContainerRef}>
                         <div className="hdnpi-p-t-c-table">
                             {labTestData.map((test, index) => (
                                 <div key={index} className="hdnpi-patients-row">
