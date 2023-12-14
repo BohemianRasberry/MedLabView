@@ -7,6 +7,7 @@ import PageHomeMT from './PageHomeMT';
 import PageHomePG from './PageHomePG';
 import PageAdmin from './PageAdmin';
 import PageLogin from './PageLogin';
+import PageHDNPIDetailed from "./PageHDNPIDetailed";
 import Userfront from "@userfront/react";
 import React from 'react';
 
@@ -46,6 +47,7 @@ function App() {
       />
       <Route path="/login" element={<PageLogin />} />
       <Route path="/patient/:patientId" element={<PageHDNPatient/>}/>
+      <Route path="/patient/:patientId/:transactionid" element={<PageHDNPIDetailed/>}/>
     </Routes>
   );
 }

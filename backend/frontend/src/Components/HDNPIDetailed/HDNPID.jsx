@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import logo_icon from '../Assets/Logo.png';
-import './HDNPI.css';
+import './HDNPID.css';
 import { useParams } from 'react-router-dom';
 import { db } from '../../Firebase';
 import { doc, getDoc, query, collection, where, getDocs } from 'firebase/firestore'; // Import the necessary functions
@@ -61,13 +61,13 @@ const HDNPI = () => {
                 )}
             <div className="hdnpi-patient-detailed-info-header-row">
                 <div className="hdnpi-patients-header">
-                    <div className="hdnpi-p-h">Date & Time Given</div>
+                    <div className="hdnpi-p-h">Unit</div>
                     <div className="hdnpi-p-h-separator">|</div>
-                    <div className="hdnpi-p-h">Specimen Number</div>
+                    <div className="hdnpi-p-h">Result</div>
                     <div className="hdnpi-p-h-separator">|</div>
-                    <div className="hdnpi-p-h">Laboratory Test</div>
+                    <div className="hdnpi-p-h">Reference Range</div>
                     <div className="hdnpi-p-h-separator">|</div>
-                    <div className="hdnpi-p-h">Laboratory Test ID</div>
+                    <div className="hdnpi-p-h"></div>
                 </div>
 
                 <div className="hdnpi-patients-table-container">
