@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import logo_icon from '../Assets/Logo.png';
 import './HDNPI.css';
 import { useParams } from 'react-router-dom';
@@ -10,6 +10,17 @@ const HDNPI = () => {
     const { patientId } = useParams();
     const [patientData, setPatientData] = useState(null);
     const [transactions, setTransactions] = useState([]);
+    const [isScrollbarVisible, setIsScrollbarVisible] = useState(false);
+    const tableContainerRef = useRef(null);
+
+    // Function to check for scrollbar visibility
+    const checkForScrollbar = () => {
+        const el = tableContainerRef.current;
+        if (el) {
+            const hasScrollbar = el.scrollHeight > el.clientHeight;
+            setIsScrollbarVisible(hasScrollbar);
+        }
+    };
 
     useEffect(() => {
         const fetchPatientData = async () => {
@@ -39,6 +50,14 @@ const HDNPI = () => {
         fetchPatientData();
         fetchTransactions();
     }, [patientId]);
+
+    useEffect(() => {
+        checkForScrollbar(); // Call on mount
+        window.addEventListener('resize', checkForScrollbar); // Add listener on window resize
+        return () => {
+            window.removeEventListener('resize', checkForScrollbar); // Clean up listener on unmount
+        };
+    }, [transactions]);
 
     const navigate = useNavigate();
 
@@ -81,7 +100,7 @@ const HDNPI = () => {
                     <div className="hdnpi-p-h">Laboratory Test ID</div>
                 </div>
 
-                <div className="hdnpi-patients-table-container">
+                <div className={`hdnpi-patients-table-container ${isScrollbarVisible ? '' : 'add-padding'}`} ref={tableContainerRef}>
                     <div className="hdnpi-p-t-c-table">
                         {/* Display transactions */}
                         {transactions.map((transaction) => (
