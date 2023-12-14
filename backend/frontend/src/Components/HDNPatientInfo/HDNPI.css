@@ -91,6 +91,7 @@
     font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 
     'Lucida Sans', Arial, sans-serif;
     color: #18694e;
+    
 }
 
 .hdnpi-p-h-separator{
@@ -99,4 +100,40 @@
     font-size: clamp(1.5rem, 0vw, 30px);
     padding-bottom: 0.5%;
     cursor: context-menu;
+}
+
+.hdnpi-patients-table-container{
+    max-height: 380px;
+    overflow: auto;
+    position: relative;
+    background-color: #edf5f3;
+    border-radius: 13px;
+    padding-left: 5.5px;
+}
+
+.hdnpi-patients-table{
+    display: flex;
+    flex-direction: column;
+}
+
+.hdnpi-patients-row{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 7px 0px 7px 0px; 
+    max-width: 100%; 
+    margin: auto;
+}
+
+.hdnpi-p-h-cell{
+    width: 1000px;
+    text-align: center;
+    padding: 0 0px 0 0px;
+    margin: 0 1% 0 1%;  
+    font-size: clamp(0rem, 2vw, 21px);
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 
+    'Lucida Sans', Arial, sans-serif;
+    color: #18694e;
+    border: none;
+    background: none;
 }
