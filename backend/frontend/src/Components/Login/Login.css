@@ -1,0 +1,100 @@
+.login-container{
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    margin-top: 8%;
+    justify-content: center;
+    align-items: center;   
+    width: clamp(30rem, 10vw, 520px);
+    background: #fff;
+    padding-bottom: 30px;
+    border-radius: 5%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.logo{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 9px;
+    width: 100%;
+    margin-top: 45px;
+}
+
+.logo img{
+    width: 270px;
+}
+.em-pass{
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    
+}
+.input input{
+    height: 50px;
+    width: 500px;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: #000000;
+    font-size: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+    opacity: 50%;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 
+       'Lucida Sans', Arial, sans-serif; 
+}
+
+.input{
+    display: flex;
+    align-items: center;
+    margin: auto;
+    width: 370px;
+    height: 70px;
+    background: #edf0f6;
+    border-radius: 5px;
+}
+
+.input input[type="password"]::-ms-reveal {
+    display: none;
+}
+
+.eyecon {
+    margin-top: 5px;
+    margin-left: -20px;
+    margin-right: -20px;
+    padding-left: 14px;
+    padding-right: 45px;
+    width: 45px;
+}
+
+.eyecon span{
+    cursor: pointer;
+}
+
+.eyecon img{
+    width: 40px;
+}
+
+.login-button{
+    display: flex;
+    gap: 30px;
+    margin: 40px auto 25px;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 
+       'Lucida Sans', Arial, sans-serif;
+}
+
+.login-button-text{
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+    width: 260px;
+    height: 70px;
+    color: #fff;
+    background: #18694e;
+    border-radius: 50px;
+    font-size: 25px;
+    font-weight: 400;
+    cursor: pointer;
+}

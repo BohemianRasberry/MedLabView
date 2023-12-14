@@ -1,0 +1,19 @@
+<!-- core/templates/core/index.html -->
+
+{% load static %}
+{% load render_bundle from webpack_loader %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Other head elements... -->
+    {% render_bundle 'main' %}
+    {% render_bundle 'runtime' %}
+</head>
+<body>
+    <div id="root"></div>
+
+    <!-- Include and render JSON data using json_script tag -->
+    {% json_script 'my_json_data' %}
+</body>
+</html>
