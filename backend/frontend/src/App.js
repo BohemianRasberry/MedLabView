@@ -1,5 +1,5 @@
 import './App.css';
-import { Routes, Route, Navigate, useLocation } from "react-router-dom";
+import { Routes, Route, Navigate,} from "react-router-dom";
 import PageHomeDN from './PageHomeDN';
 import PageHDNPatient from './PageHDNPatient';
 import PageHomeLC from './PageHomeLC';
@@ -29,20 +29,22 @@ function Home() {
   return <PageLogin />;
 }
 
-function PrivateRoute({ children }) {
-  const location = useLocation();
-  if (Userfront.accessToken()) {
-    // If user is logged in and tries to access the login page, redirect them to home
-    return location.pathname === "/login" ? <Navigate to="/" /> : children;
-  }
-  return children;
-}
+
 
 function App() {
   return (
     <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="/login" element={<PrivateRoute><PageLogin /></PrivateRoute>} />
+      <Route
+        path="*"
+        element={
+          Userfront.accessToken() ? (
+            <Home />
+          ) : (
+            <Navigate to="/login" />
+          )
+        }
+      />
+      <Route path="/login" element={<PageLogin />} />
       <Route path="/patient/:patientId" element={<PageHDNPatient/>}/>
     </Routes>
   );
