@@ -111,11 +111,7 @@ const HDNPID = () => {
                                 <div className="hdnpi-p-h-separator">|</div>
                                 <div className="hdnpi-p-h-cell">{getTestName(transaction.testcode)}</div>
                                 <div className="hdnpi-p-h-separator">|</div>
-                                <button
-                                    className="hdnpi-p-h-cell"
-                                    onClick={() => redirectToPatientView(transaction.patientid, transaction.testcode, transaction.id)}>
-                                    {transaction.transactionid}
-                                </button>
+                                <div className="hdnpi-p-h-cell">{transaction.transactionid}</div>
                             </div>
                         ))}
                     </div>
