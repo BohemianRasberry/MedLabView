@@ -1,0 +1,13 @@
+<!-- core/templates/core/login.html -->
+{% extends 'core/base.html' %}
+{% block title %}Login{% endblock %}
+{% block content %}
+<div id="root"></div>
+<script>
+  const csrfToken = '{{ csrf_token }}';
+  ReactDOM.render(
+    <Login csrfToken={csrfToken} />,
+    document.getElementById('root')
+  );
+</script>
+{% endblock %}
