@@ -5,16 +5,75 @@ import { useParams } from 'react-router-dom';
 import { db } from '../../Firebase';
 import { doc, getDoc } from 'firebase/firestore';
  
-/*const patientsData = [
+const labTestData = [
     {
-        familyName: 'Doe',
-        firstName: 'David',
-        dateOfBirth: '1990-01-01',
-        age: '32',
-        sex: 'M',
-        patientId: 'P123456',
+        dateTimeGiven: '2023-04-01 09:00',
+        specimenNumber: 'SN001',
+        labTest: 'CBC',
+        labTestId: 'LT001',
     },
-];*/
+    {
+        dateTimeGiven: '2023-04-02 10:30',
+        specimenNumber: 'SN002',
+        labTest: 'Metabolic Panel',
+        labTestId: 'LT002',
+    },
+    {
+        dateTimeGiven: '2023-04-03 11:15',
+        specimenNumber: 'SN003',
+        labTest: 'Lipid Panel',
+        labTestId: 'LT003',
+    },
+    {
+        dateTimeGiven: '2023-04-04 08:45',
+        specimenNumber: 'SN004',
+        labTest: 'Liver Panel',
+        labTestId: 'LT004',
+    },
+    {
+        dateTimeGiven: '2023-04-05 14:00',
+        specimenNumber: 'SN005',
+        labTest: 'Thyroid Panel',
+        labTestId: 'LT005',
+    },
+    {
+        dateTimeGiven: '2023-04-06 16:00',
+        specimenNumber: 'SN006',
+        labTest: 'Iron Panel',
+        labTestId: 'LT006',
+    },
+    {
+        dateTimeGiven: '2023-04-07 09:30',
+        specimenNumber: 'SN007',
+        labTest: 'Hemoglobin A1C',
+        labTestId: 'LT007',
+    },
+    {
+        dateTimeGiven: '2023-04-08 10:45',
+        specimenNumber: 'SN008',
+        labTest: 'Vitamin D',
+        labTestId: 'LT008',
+    },
+    {
+        dateTimeGiven: '2023-04-09 13:20',
+        specimenNumber: 'SN009',
+        labTest: 'Electrolytes Panel',
+        labTestId: 'LT009',
+    },
+    {
+        dateTimeGiven: '2023-04-10 15:10',
+        specimenNumber: 'SN010',
+        labTest: 'Complete Blood Count',
+        labTestId: 'LT010',
+    },
+    {
+        dateTimeGiven: '2023-04-11 11:00',
+        specimenNumber: 'SN011',
+        labTest: 'Basic Metabolic Panel',
+        labTestId: 'LT011',
+    }
+];
+
 
 const HDNPI = () => {
 
@@ -71,8 +130,18 @@ const HDNPI = () => {
                     </div>
 
                     <div className="hdnpi-patients-table-container">
-                        <div className="hdnpi-patients-table">
-                            <div className="hdnpi-patients-row"></div>
+                        <div className="hdnpi-p-t-c-table">
+                            {labTestData.map((test, index) => (
+                                <div key={index} className="hdnpi-patients-row">
+                                    <div className="hdnpi-p-h-cell">{test.dateTimeGiven}</div>
+                                    <div className="hdnpi-p-h-separator">|</div>
+                                    <div className="hdnpi-p-h-cell">{test.specimenNumber}</div>
+                                    <div className="hdnpi-p-h-separator">|</div>
+                                    <div className="hdnpi-p-h-cell">{test.labTest}</div>
+                                    <div className="hdnpi-p-h-separator">|</div>
+                                    <div className="hdnpi-p-h-cell">{test.labTestId}</div>
+                                </div>
+                            ))}
                         </div>
                     </div>
                 </div>
