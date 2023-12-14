@@ -61,24 +61,25 @@ const HDNPI = () => {
                 )}
             <div className="hdnpi-patient-detailed-info-header-row">
                 <div className="hdnpi-patients-header">
-                    <div className="hdnpi-p-h">Date & Time Given</div>
+                    <div className="hdnpi-p-h">Unit</div>
                     <div className="hdnpi-p-h-separator">|</div>
-                    <div className="hdnpi-p-h">Specimen Number</div>
+                    <div className="hdnpi-p-h">Result</div>
                     <div className="hdnpi-p-h-separator">|</div>
-                    <div className="hdnpi-p-h">Laboratory Test</div>
+                    <div className="hdnpi-p-h">Reference Range</div>
                     <div className="hdnpi-p-h-separator">|</div>
-                    <div className="hdnpi-p-h">Laboratory Test ID</div>
+                    <div className="hdnpi-p-h"></div>
                 </div>
 
                 <div className="hdnpi-patients-table-container">
                     <div className="hdnpi-p-t-c-table">
+                        {/* Display transactions */}
                         {transactions.map((transaction) => (
                             <div key={transaction.id} className="hdnpi-patients-row">
                                 <div className="hdnpi-p-h-cell">{transaction.datetime}</div>
                                 <div className="hdnpi-p-h-separator">|</div>
                                 <div className="hdnpi-p-h-cell">{transaction.specimenid}</div>
                                 <div className="hdnpi-p-h-separator">|</div>
-                                <div className="hdnpi-p-h-cell">{transaction.testcode}</div>
+                                <div className="hdnpi-p-h-cell">{getTestName(transaction.testcode)}</div>
                                 <div className="hdnpi-p-h-separator">|</div>
                                 <div className="hdnpi-p-h-cell">{transaction.transactionid}</div>
                             </div>
@@ -89,6 +90,63 @@ const HDNPI = () => {
         </div>
         </div>
     );
+};
+
+const getTestName = (testCode) => {
+    switch (testCode) {
+        case '1':
+            return 'Complete Blood Count';
+        case '2':
+            return 'Blood Typing';
+        case '3':
+            return 'Erythrocyte Sedimentation Rate';
+        case '4':
+            return 'Fasting Blood Sugar';
+        case '5':
+            return 'Cholesterol';
+        case '6':
+            return 'Triglyceride';
+        case '7':
+            return 'High Density Lipoprotein';
+        case '8':
+            return 'Low Density Lipoprotein';
+        case '9':
+            return 'Very Low Density Lipoprotein';
+        case '10':
+            return 'Blood Urea Nitrogen';
+        case '11':
+            return 'Creatinine';
+        case '12':
+            return 'Blood Uric Acid';
+        case '13':
+            return 'Aspartate Transaminase';
+        case '14':
+            return 'Alanine Transaminase';
+        case '15':
+            return 'Alkaline Phosphatase';
+        case '16':
+            return 'Sodium';
+        case '17':
+            return 'Potassium';
+        case '18':
+            return 'Ionized Calcium';
+        case '19':
+            return 'Routine Urinalysis';
+        case '20':
+            return 'Pregnancy Test';
+        case '21':
+            return 'Routine fecalysis';
+        case '22':
+            return 'Fecal Occult Blood Test';
+        case '23':
+            return 'Anti-Streptolysin O Titer';
+        case '24':
+            return 'Dengue Antibody (IgG,IgM)';
+        case '25':
+            return 'Dengue antigen (NS1)';
+        default:
+            return `Test ${testCode}`;
+    }
 };
 
 export default HDNPI;
