@@ -7,31 +7,105 @@ import { db } from '../../Firebase';
 import { collection, doc, getDoc, getDocs } from 'firebase/firestore';
 
 const HomeTester = () => {
-    console.log("Hello world")
-  const [patients, setPatients] = useState([]);
-  const patientsCollectionRef = collection(db, "patients")
+    const [searchInput, setSearchInput] = useState('');
+    //const [patients, setPatients] = useState(initialPatientData);
+    const [isScrollbarVisible, setIsScrollbarVisible] = useState(false);
+    const tableContainerRef = useRef(null);
+    const [patients, setPatients] = useState([]);
+    const patientsCollectionRef = collection(db, "patients")
 
-  useEffect(() => {
-    const getPatients = async () => {
-        const data = await getDocs(patientsCollectionRef);
-        console.log(data);
-        setPatients(data.docs.map((doc) => ({...doc.data(), id: doc.id})));
-    }
+    const handleSearch = () => {
+    /*    if (searchInput) {
+            setPatients(initialPatientData.filter(patient => patient.id === searchInput));
+        } else {
+            setPatients(initialPatientData);
+        }*/
+    };
+
+    const handleInputChange = (event) => {
+        setSearchInput(event.target.value);
+    };
+
+    const checkForScrollbar = () => {
+        const el = tableContainerRef.current;
+        if (el) {
+            const hasScrollbar = el.scrollHeight > el.clientHeight;
+            setIsScrollbarVisible(hasScrollbar);
+        }
+    };
+
+    const navigate = useNavigate();
+
+    const redirectToPatientView = () => {
+        navigate('/patient');
+    };
+
+    useEffect(() => {
+        const getPatients = async () => {
+            try{
+                const data = await getDocs(patientsCollectionRef);
+                console.log(data);
+                setPatients(data.docs.map((doc) => ({...doc.data(), id: doc.id})));
+            } catch (error) {
+                console.error('Error fetching data from Firestore:', error.message);
+            }
+        }
+        
+        getPatients()
+      }, [patientsCollectionRef])
     
-    getPatients()
-  }, [])
+      useEffect(() => {
+        // Check on mount
+        checkForScrollbar();
 
-  return (
-    <div className='App'>
-        {patients.map((user) => {
-            return <div>
-                {" "}
-                <h1> Patient ID: {user.patientid}</h1>
-                <h1> Patient Last Name: {user.patientlastname}</h1>
-            </div>;
-        })}
+        // Check on window resize or when the patient list changes
+        window.addEventListener('resize', checkForScrollbar);
+        return () => window.removeEventListener('resize', checkForScrollbar);
+    }, [patients]);
+
+    return (
+        <div className='dn-container'>
+            <div className="dn-logo">
+                <img src={logo_icon} alt="Logo" />
+                <div className='LTP'>Laboratory Test Portal</div>
+            </div>
+            
+            <div className="dn-search">
+                <input type="id" placeholder="Enter Patient ID Number" value={searchInput} onChange={handleInputChange} />
+                <div className="dn-search-button" onClick={handleSearch}>
+                    <span><img src={search_icon} alt="search"></img></span>
+                </div>
+            </div>
+            <div className="dn-patients">
+                <div className="dn-patients-header">
+                    <div className="dn-p-h">Patient ID Number</div>
+                    <div className="dn-p-h-separator">|</div>
+                    <div className="dn-p-h">Family Name</div>
+                    <div className="dn-p-h-separator">|</div>
+                    <div className="dn-p-h">First Name</div>
+                    <div className="dn-p-h-separator">|</div>
+                    <div className="dn-p-h">Date of Birth</div>
+                </div>
+
+                <div className={`dn-patients-table-container ${!isScrollbarVisible ? 'add-padding' : ''}`} ref={tableContainerRef}>
+                    <div className="dn-patients-table">
+                        {patients.map((user) => (
+                            <div key={user.id} className="dn-patients-row">
+                                <button className="dn-p-r-cell" onClick={redirectToPatientView}>{user.patientid}</button>
+                                <div className="dn-p-h-separator">|</div>
+                                <div className="dn-p-r-cell">{user.patientlastname}</div>
+                                <div className="dn-p-h-separator">|</div>
+                                <div className="dn-p-r-cell">{user.patientfirstname}</div>
+                                <div className="dn-p-h-separator">|</div>
+                                <div className="dn-p-r-cell">{user.dateofbirth}</div>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            </div>
         </div>
-  );
+    );
+    
 };
 
 export default HomeTester;
