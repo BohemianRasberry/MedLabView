@@ -1,0 +1,17 @@
+{
+  "files": {
+    "main.css": "/neo/static/css/main.a897e39d.css",
+    "main.js": "/neo/static/js/main.5af6535c.js",
+    "static/js/651.81893c41.chunk.js": "/neo/static/js/651.81893c41.chunk.js",
+    "static/media/Logo.png": "/neo/static/media/Logo.82ca16efe12aab566897.png",
+    "static/media/Home-LO.png": "/neo/static/media/Home-LO.728f87c60283e2952dbe.png",
+    "index.html": "/neo/index.html",
+    "main.a897e39d.css.map": "/neo/static/css/main.a897e39d.css.map",
+    "main.5af6535c.js.map": "/neo/static/js/main.5af6535c.js.map",
+    "651.81893c41.chunk.js.map": "/neo/static/js/651.81893c41.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.a897e39d.css",
+    "static/js/main.5af6535c.js"
+  ]
+}
