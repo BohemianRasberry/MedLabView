@@ -1,2 +1,2 @@
-# CS-128.1-Group
+# medlabview
 For collaboration for CS 128.1
