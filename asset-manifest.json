@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.css": "/mlv/static/css/main.4742df61.css",
-    "main.js": "/mlv/static/js/main.ceffbfc1.js",
-    "static/js/651.81893c41.chunk.js": "/mlv/static/js/651.81893c41.chunk.js",
-    "static/media/Logo.png": "/mlv/static/media/Logo.82ca16efe12aab566897.png",
-    "static/media/Home-LO.png": "/mlv/static/media/Home-LO.728f87c60283e2952dbe.png",
-    "index.html": "/mlv/index.html",
-    "main.4742df61.css.map": "/mlv/static/css/main.4742df61.css.map",
-    "main.ceffbfc1.js.map": "/mlv/static/js/main.ceffbfc1.js.map",
-    "651.81893c41.chunk.js.map": "/mlv/static/js/651.81893c41.chunk.js.map"
+    "main.css": "/medlabview/static/css/main.4742df61.css",
+    "main.js": "/medlabview/static/js/main.c891950a.js",
+    "static/js/651.81893c41.chunk.js": "/medlabview/static/js/651.81893c41.chunk.js",
+    "static/media/Logo.png": "/medlabview/static/media/Logo.82ca16efe12aab566897.png",
+    "static/media/Home-LO.png": "/medlabview/static/media/Home-LO.728f87c60283e2952dbe.png",
+    "index.html": "/medlabview/index.html",
+    "main.4742df61.css.map": "/medlabview/static/css/main.4742df61.css.map",
+    "main.c891950a.js.map": "/medlabview/static/js/main.c891950a.js.map",
+    "651.81893c41.chunk.js.map": "/medlabview/static/js/651.81893c41.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.4742df61.css",
-    "static/js/main.ceffbfc1.js"
+    "static/js/main.c891950a.js"
   ]
 }
