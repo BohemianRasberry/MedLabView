@@ -8,6 +8,8 @@ import { getFirestore, collection, addDoc , setDoc, doc } from 'firebase/firesto
 import { redirect } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 
+
+// Initiate firebase to receive new information
 const HMTInput = () => {
     const navigate = useNavigate();
 
@@ -47,7 +49,7 @@ const HMTInput = () => {
     "Antistreptolysin O": ["aso"],
     "Aspartate Aminotransferase": ["ast"],
     "Basophil": [],
-    "Blood group": ["rhfactor"],
+    "Blood Group": ["rhfactor"],
     "Blood Urea Nitrogen": ["bun"],
     "Blood Uric Acid": ["bua"],
     "Calcium": ["calcium"],
@@ -84,12 +86,12 @@ const HMTInput = () => {
 
     const clearFormData = () => {
         setFormData({
-          firstName: '',
-          middleName: '',
-          surname: '',
-          sex: 'male',
-          patientId: '',
-          birthdate: '',
+          patientfirstname: '',
+          patientmiddlename: '',
+          patientlastname: '',
+          sex: 'Male',
+          patientid: '',
+          dateofbirth: '',
           age: '',
           dateRequested: '',
           dateReceived: '',
@@ -107,12 +109,12 @@ const HMTInput = () => {
     }, {});
 
     const [formData, setFormData] = useState({
-        firstName: '',
-        middleName: '',
-        surname: '',
-        sex: 'male',
-        patientId: '',
-        birthdate: '',
+        patientfirstname: '',
+        patientmiddlename: '',
+        patientlastname: '',
+        sex: 'Male',
+        patientid: '',
+        dateofbirth: '',
         age: '',
         dateRequested: '',
         dateReceived: '',
@@ -195,8 +197,8 @@ const HMTInput = () => {
                                 <div className="firstname">
                                     <input 
                                         type="text" 
-                                        name="firstName" 
-                                        value={formData.firstName} 
+                                        name="patientfirstname" 
+                                        value={formData.patientfirstname} 
                                         onChange={handleInputChange} 
                                     />
                                 </div>
@@ -207,8 +209,8 @@ const HMTInput = () => {
                                 <div className="middlename">
                                     <input 
                                         type="text" 
-                                        name="middleName" 
-                                        value={formData.middleName} 
+                                        name="patientmiddlename" 
+                                        value={formData.patientmiddlename} 
                                         onChange={handleInputChange} 
                                     />
                                 </div>
@@ -219,8 +221,8 @@ const HMTInput = () => {
                                 <div className="surname">
                                     <input 
                                         type="text" 
-                                        name="surname" 
-                                        value={formData.surname} 
+                                        name="patientlastname" 
+                                        value={formData.patientlastname} 
                                         onChange={handleInputChange} 
                                     />
                                 </div>
@@ -248,8 +250,8 @@ const HMTInput = () => {
                                 <div className="patientid">
                                     <input 
                                         type="text" 
-                                        name="patientId" 
-                                        value={formData.patientId} 
+                                        name="patientid" 
+                                        value={formData.patientid} 
                                         onChange={handleInputChange} 
                                     />
                                 </div>
@@ -260,8 +262,8 @@ const HMTInput = () => {
                                 <div className="birthdate">
                                     <input 
                                         type="date" 
-                                        name="birthdate" 
-                                        value={formData.birthdate} 
+                                        name="dateofbirth" 
+                                        value={formData.dateofbirth} 
                                         onChange={handleInputChange} 
                                     />
                                 </div>

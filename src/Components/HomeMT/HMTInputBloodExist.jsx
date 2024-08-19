@@ -47,7 +47,7 @@ const HMTInput = () => {
             "Antistreptolysin O": ["aso"],
             "Aspartate Aminotransferase": ["ast"],
             "Basophil": [],
-            "Blood group": ["rhfactor"],
+            "Blood Group": ["rhfactor"],
             "Blood Urea Nitrogen": ["bun"],
             "Blood Uric Acid": ["bua"],
             "Calcium": ["calcium"],

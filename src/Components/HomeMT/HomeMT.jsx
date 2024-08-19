@@ -48,7 +48,7 @@ const HomeMT = () => {
     };
 
     const handleCreateNewPatientRecord = () => {
-        navigate('/input_blood')
+        navigate('/input_blood_new')
     };
 
     const noUnfinishedTestResults = () => {

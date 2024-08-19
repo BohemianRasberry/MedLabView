@@ -55,7 +55,7 @@ function App() {
       <Route path="/input_urine/:patientId" element={<PageHMTInputUrine/>}/>
       <Route path="/input_feces/:patiendId" element={<PageHMTInputFeces/>}/>
       <Route path="/input_blood/:patientId" element={<PageHMTInputBloodExist/>}/>
-      <Route path="/input_blood" element={<PageHMTInputBloodNew/>}/>
+      <Route path="/input_blood_new" element={<PageHMTInputBloodNew/>}/>
       <Route path="/input_urine" element={<PageHMTInputUrine/>}/>
       <Route path="/input_feces" element={<PageHMTInputFeces/>}/>
       <Route path="/summary" element={<PageHMTSummary/>}/>

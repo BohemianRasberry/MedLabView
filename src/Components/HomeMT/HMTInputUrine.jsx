@@ -12,7 +12,7 @@ const HMTUrine = () => {
 
     const db = getFirestore();
 
-    const { patientId } = useParams();
+    const { patientid } = useParams();
     const [patientData, setPatientData] = useState(null);
 
     const testParameters = {
@@ -27,12 +27,12 @@ const HMTUrine = () => {
 
     const clearFormData = () => {
         setFormData({
-          firstName: '',
-          middleName: '',
-          surname: '',
+          patientfirstname: '',
+          patientmiddlename: '',
+          patientlastname: '',
           sex: 'male',
-          patientId: '',
-          birthdate: '',
+          patientid: '',
+          dateofbirth: '',
           age: '',
           dateRequested: '',
           dateReceived: '',
@@ -50,12 +50,12 @@ const HMTUrine = () => {
     }, {});
 
     const [formData, setFormData] = useState({
-        firstName: '',
-        middleName: '',
-        surname: '',
+        patientfirstname: '',
+        patientmiddlename: '',
+        patientlastname: '',
         sex: 'male',
-        patientId: '',
-        birthdate: '',
+        patientid: '',
+        dateofbirth: '',
         age: '',
         dateRequested: '',
         dateReceived: '',
@@ -106,19 +106,19 @@ const HMTUrine = () => {
         const fetchPatientData = async () => {
             try {
             // Check if patientId is available
-            if (!patientId) {
+            if (!patientid) {
                 console.error('No patient ID provided');
                 return;
             }
 
-            const patientDocRef = doc(db, 'patient', `patient_${patientId}_id`);
+            const patientDocRef = doc(db, 'patient', `patient_${patientid}_id`);
             const docSnap = await getDoc(patientDocRef);
 
             if (docSnap.exists()) {
                 setFormData(prevFormData => ({
                 ...prevFormData,
                 ...docSnap.data(),
-                patientId: `${patientId}` // Set patientId in formData
+                patientid: `${patientid}` // Set patientId in formData
                 }));
             } else {
                 console.log('No such patient!');
@@ -128,15 +128,15 @@ const HMTUrine = () => {
             }
         };
         fetchPatientData();
-        }, [db, patientId]);
+        }, [db, patientid]);
 
         const handleNextButtonClick = async () => {
             try {
                 // Assuming patientId is part of the formData state
-                const patientId = formData.patientId;
+                const patientid = formData.patientid;
         
                 // Redirecting to the next page with the patientId
-                navigate(`/input_feces/${patientId}`);
+                navigate(`/input_feces/${patientid}`);
             } catch (error) {
                 console.error('Failed to save patient data or navigate:', error);
             }
@@ -170,7 +170,7 @@ const HMTUrine = () => {
                                     <input 
                                         type="text" 
                                         name="firstName" 
-                                        value={formData.firstName} 
+                                        value={formData.patientfirstname} 
                                         onChange={handleInputChange} 
                                     />
                                 </div>
@@ -182,7 +182,7 @@ const HMTUrine = () => {
                                     <input 
                                         type="text" 
                                         name="middleName" 
-                                        value={formData.middleName} 
+                                        value={formData.patientmiddlename} 
                                         onChange={handleInputChange} 
                                     />
                                 </div>
@@ -194,7 +194,7 @@ const HMTUrine = () => {
                                     <input 
                                         type="text" 
                                         name="surname" 
-                                        value={formData.surname} 
+                                        value={formData.patientlastname} 
                                         onChange={handleInputChange} 
                                     />
                                 </div>
@@ -223,7 +223,7 @@ const HMTUrine = () => {
                                     <input 
                                         type="text" 
                                         name="patientId" 
-                                        value={formData.patientId} 
+                                        value={formData.patientid} 
                                         onChange={handleInputChange} 
                                     />
                                 </div>
@@ -235,7 +235,7 @@ const HMTUrine = () => {
                                     <input 
                                         type="date" 
                                         name="birthdate" 
-                                        value={formData.birthdate} 
+                                        value={formData.dateofbirth} 
                                         onChange={handleInputChange} 
                                     />
                                 </div>

@@ -72,13 +72,13 @@ const HMTInput = () => {
 
     const clearFormData = () => {
         setFormData({
-          firstName: '',
-          middleName: '',
-          surname: '',
-          sex: 'male',
-          patientId: '',
-          birthdate: '',
-          age: '',
+        patientfirstname: '',
+        patientmiddlename: '',
+        patientlastname: '',
+        sex: 'Male',
+        patientid: '',
+        dateofbirth: '',
+        age: '',
           dateRequested: '',
           dateReceived: '',
           specimenNumber: '',
@@ -95,12 +95,12 @@ const HMTInput = () => {
     }, {});
 
     const [formData, setFormData] = useState({
-        firstName: '',
-        middleName: '',
-        surname: '',
-        sex: 'male',
-        patientId: '',
-        birthdate: '',
+        patientfirstname: '',
+        patientmiddlename: '',
+        patientlastname: '',
+        sex: 'Male',
+        patientid: '',
+        dateofbirth: '',
         age: '',
         dateRequested: '',
         dateReceived: '',
